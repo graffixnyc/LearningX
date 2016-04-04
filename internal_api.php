@@ -104,7 +104,7 @@ function addUser($username,$password,$firstname,$lastname) {
 }
 
 function login($username,$password) {
-	$sql = "CALL checkPassword(:username,md5(:password))";
+	$sql = "CALL checkPassword(:username,:password)";
 	try {
 		$dbCon = getConnection();
 		$stmt = $dbCon->prepare($sql);

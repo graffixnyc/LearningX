@@ -5,7 +5,7 @@
 	
 	if (!empty($_POST)){
 		$user=array(); 
-		$user=login($_POST["username"],$_POST["password"]);
+		$user=login($_POST["username"],md5($_POST["password"]));
 		if ($user[0]["loggedin"]==1){
 			$_SESSION["uid"]=$user[0]["uid"];
 			$_SESSION["loggedin"]=$user[0]["loggedin"];
