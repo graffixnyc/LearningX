@@ -123,6 +123,25 @@ function login($username,$password) {
 	}
 }
 
+function getResources($topicID) {
+	$sql = "CALL getResources(:topicID)";
+	try {
+		$dbCon = getConnection();
+		$stmt = $dbCon->prepare($sql);
+		$stmt->bindParam("topicID", $topicID);
+		$stmt->execute();		
+		$results = array();
+		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+			$results[] = $row;
+		}
+		return $results;
+		$dbCon = null;
+	}
+	catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+	}
+}
+
 function checkUsername($username) {
 	$sql = "CALL checkUsername(:username)";
 	try {
