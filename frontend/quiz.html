@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="welcome.css">
+    </head>
+    <body>
+        <div class="head-picture">
+            <center>
+                <img src="./test.png" width="862" height="100">
+            </center>
+        </div>
+        <div id="side-navi-bar" class="sidenav">
+            <a href="home.html">Home</a>
+            <a href="intro.html">Intro</a>
+            <a href="variables.html">Variables</a>
+            <a href="conditionals.html">Conditionals</a>
+            <a href="topic.html">topic?</a>
+            <a href="topic.html">topic?</a>
+            <a href="topic.html">topic?</a>
+        </div>
+        <div id="main-section" class="mainsec">
+            <h1>Select Quiz Questions</h1>
+            <table id="quiz-table" border="1">
+                <tr>
+                    <td>Topic</td>
+                    <td>Select Questions</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>Variables</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>Conditionals</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>Topic 3</td>
+                </tr>
+            </table>
+            <form id="select-quiz">
+                <input type="radio">All Questions<br>
+                <input type="radio">Select Number of Questions<br>
+                <select style="visibility:hidden">
+                    <option value="option 1">1</option>
+                    <option value="option 2">2</option>
+                </select>
+            </form><br>
+            <input type="submit" value="Start Quiz">
+        </div>
+    </body>
+</html>
