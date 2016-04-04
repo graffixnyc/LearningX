@@ -40,6 +40,22 @@ function updateUser($uid,$firstname,$lastname,$username) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	} 
 }
+function getTopics() {
+	$sql = "CALL getTopics()";
+	try {
+		$dbCon = getConnection();
+		$stmt = $dbCon->prepare($sql);
+		$stmt->execute();
+		$results = array();
+		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+			$results[] = $row;
+		}
+		return $results;
+	}
+	catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+	} 
+}
 
 function deleteUser($uid) {
 	$sql = "CALL deleteUser(:uid)";
