@@ -51,7 +51,7 @@
 	<meta charset='utf-8'>
 	<meta http-equiv="X-UA-Compatible">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
-	<link rel="stylesheet" href="/css/styles.css">
+	<link rel="stylesheet" href="css/styles.css">
 	<script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 	<script src="js/script.js"></script>
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
