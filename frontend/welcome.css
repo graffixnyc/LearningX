@@ -1,19 +1,11 @@
-#head-piture {
+.head-piture {
     background-color:black;
     color:white;
     text-align:center;
     padding:5px;
 }
-#side-navi-bar {
-    line-height:30px;
-    background-color:#eeeeee;
-    height:300px;
-    width:100px;
+#sidebar {
     float:left;
-    padding:5px; 
-}
-#side-navi-bar a{
-    padding: 8px 8px 8px 32px;
 }
 #main-section {
     width:862px;
