@@ -60,7 +60,7 @@
 			<paper-material elevation="3" class="card">
 				<paper-toast   id="toast2" text="Login Failed, Please Try Again..."></paper-toast>
 				<center>
-					<h2>Login to Project-Mate</h2>
+					<h2>Login to Learning X</h2>
 					<?php
 						if (isset($_SESSION["newreg"])){
 							echo'<h2 style="color:salmon">You have been successfully registered.  Please login below. </h2>';

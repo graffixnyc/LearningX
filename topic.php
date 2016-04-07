@@ -1,9 +1,9 @@
-<?php 
+<?php
 	include_once("analyticstracking.php");
 	include 'internal_api.php';
 	session_start();
-	if ($_SESSION["loggedin"]=='1'){ 
-		// echo 'LOGGED IN'; 
+	if ($_SESSION["loggedin"]=='1'){
+		// echo 'LOGGED IN';
 	}
 	else{
 		$_SESSION["intended"]="topic";
@@ -72,10 +72,10 @@
             <li><a href="#">Home</a></li>
             <?php
       				//Declare the Array
-      				$topics=array(); 
+      				$topics=array();
       				//Set the Array to call the function (this function is in internal_api.php)
       				$topics=getTopics();
-      				//Loop through the results and display them.. 
+      				//Loop through the results and display them..
       				foreach($topics as $item) {
       					if ($_GET['id'] == $item["topicID"]) {
       						echo '<li class="active"><a href=topic?id=' . $item["topicID"] . '>' . $item["topic"] . '</a></li>';
@@ -83,7 +83,7 @@
       					} else {
       						echo '<li><a href=topic?id=' . $item["topicID"] . '>' . $item["topic"] . '</a></li>';
       					}
-                  
+
       				}
             ?>
           </ul>
@@ -94,7 +94,7 @@
 <?php
 if (!empty($_GET['id'])){
 	//Declare the Array
-	$resources=array(); 
+	$resources=array();
   //Declare additional resources
   $addtionalResources = array();
 	//Set the Array to call the function (this function is in internal_api.php)
@@ -106,7 +106,7 @@ if (!empty($_GET['id'])){
     else if ($item['resourceType'] == "text")
       $descriptionText = $item['resource'];
     else
-      $addtionalResources[] = $item['resource']; 
+      $addtionalResources[] = $item['resource'];
 
 		// echo "<pre>";
   //   print_r($item);
@@ -116,7 +116,7 @@ if (!empty($_GET['id'])){
 }
 ?>
 
-            <p><?php echo $descriptionText ?></p>
+
 
 
 <?php
@@ -126,6 +126,7 @@ if (!empty($_GET['id'])){
 ?>
             <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $featuredResourceId ?>" frameborder="0" allowfullscreen></iframe>
           </div>
+					<center><p><?php echo $descriptionText ?></p></center>
           <div class="">
             <h2>Additional Resource</h2>
             <ul>
@@ -137,7 +138,7 @@ if (!empty($_GET['id'])){
             </ul>
           </div>
 
-        
+
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
