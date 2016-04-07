@@ -4,7 +4,7 @@
 
 	session_start();
 	if ($_SESSION["loggedin"]=='1'){ 
-		echo 'LOGGED IN'; 
+		// echo 'LOGGED IN'; 
 	}
 	else{
 		$_SESSION["intended"]="mainmenu";
