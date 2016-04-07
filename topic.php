@@ -75,7 +75,7 @@
       				$topics=array(); 
       				//Set the Array to call the function (this function is in internal_api.php)
       				$topics=getTopics();
-      				//Loop through the results and display them.. you can write out HTML with them as you see I'm writing out the topic and then the BR HTML tag.  If you need help concatenating the tags let me know
+      				//Loop through the results and display them.. 
       				foreach($topics as $item) {
       					if ($_GET['id'] == $item["topicID"]) {
       						echo '<li class="active"><a href=topic?id=' . $item["topicID"] . '>' . $item["topic"] . '</a></li>';
@@ -89,24 +89,55 @@
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <div class="placeholders"><h1 class="page-header"><?php echo $theTopic ?></h1></div>
+          <div class="placeholders">
+            <h1 class="page-header"><?php echo $theTopic ?></h1>
 <?php
 if (!empty($_GET['id'])){
 	//Declare the Array
 	$resources=array(); 
+  //Declare additional resources
+  $addtionalResources = array();
 	//Set the Array to call the function (this function is in internal_api.php)
 	$resources=getResources($_GET['id']);
-	//Loop through the results and display them.. you can write out HTML with them as you see I'm writing out the topic and then the BR HTML tag.  If you need help concatenating the tags let me know
+	//Loop through the results and display them.. y
   foreach($resources as $item) {
-		echo "<pre>";
-    print_r($item);
-    echo "</pre>";
+    if ($item['featured'] == 1)
+      $featuredResource = $item['resource'];
+    else if ($item['resourceType'] == "text")
+      $descriptionText = $item['resource'];
+    else
+      $addtionalResources[] = $item['resource']; 
+
+		// echo "<pre>";
+  //   print_r($item);
+  //   echo "</pre>";
     	// echo $item['topicID'] . ' ' .  $item['resourceType'] . ' ' .  $item['resource'] . ' ' . $item['featured'] . '<br>';
 	}
 }
 ?>
 
+            <p><?php echo $descriptionText ?></p>
 
+
+<?php
+  //Get the id of featured resource, because the video cannot be displayed by raw url
+  $tempArray = explode("watch?v=", $featuredResource);
+  $featuredResourceId = $tempArray[1];
+?>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $featuredResourceId ?>" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <div class="">
+            <h2>Additional Resource</h2>
+            <ul>
+              <?php
+                foreach ($addtionalResources as $item) {
+                  echo "<li><a href=" . $item . ">" . $item . "</a></li>";
+                }
+              ?>
+            </ul>
+          </div>
+
+        
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
