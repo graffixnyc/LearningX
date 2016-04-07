@@ -61,6 +61,7 @@
 				<paper-toast   id="toast2" text="Login Failed, Please Try Again..."></paper-toast>
 				<center>
 					<h2>Login to Learning X</h2>
+					<p>If you are not already registered please enter your email address and choose a password and you will be directed to the registration page to complete registration.  If you want to use guest mode without signing in or registering please click this LINK WILL GO HERE.  <br><b>PLEASE NOTE:</b>  If you work in guest mode your progress will only be saved for the session and not recorded into the system</p>
 					<?php
 						if (isset($_SESSION["newreg"])){
 							echo'<h2 style="color:salmon">You have been successfully registered.  Please login below. </h2>';
@@ -87,7 +88,7 @@
 					<form is="iron-form" id="form" method="post" >
 					  <paper-input class="my-class"  id="email" type="email" name="username" label="Email Address" required></paper-input>
 					  <paper-input class="my-class"  id="password" type="password" name="password" label="Password" required></paper-input>
-					 <paper-button class="my-button" raised onclick="submitForm();">LOGIN</paper-button>
+					 <paper-button class="my-button" raised onclick="submitForm();">SIGN-IN/REGISTER</paper-button>
 					  
 					  <br> 
 					  <br>
