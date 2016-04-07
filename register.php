@@ -39,7 +39,7 @@ else{?>
 <div class="adjust">
   <paper-material elevation="3" class="card">
   <center>
-    <h2>Register for Project-Mate</h2>
+    <h2>Register for Learning X</h2>
   </center>
   <center>
     <?php if (isset($_SESSION["UserReg"])){ 
