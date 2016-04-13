@@ -127,7 +127,7 @@ if (!empty($_GET['id'])){
             <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $featuredResourceId ?>" frameborder="0" allowfullscreen></iframe>
           </div>
 					<center><p><?php echo $descriptionText ?></p></center>
-          <div class="">
+          <div class="col-md-6">
             <h2>Additional Resource</h2>
             <ul>
               <?php
@@ -135,6 +135,12 @@ if (!empty($_GET['id'])){
                   echo "<li><a href=" . $item . ">" . $item . "</a></li>";
                 }
               ?>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <h2>Test Your Knowledge</h2>
+            <ul>
+              <li><a href="#">Let's go!</a></li>
             </ul>
           </div>
 
