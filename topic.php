@@ -65,84 +65,85 @@
       </div>
     </nav>
 
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
+    <div id="wrapper">
+      <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+        <ul class="nav nav-sidebar">
             <li><a href="#">Home</a></li>
             <?php
-      				//Declare the Array
-      				$topics=array();
-      				//Set the Array to call the function (this function is in internal_api.php)
-      				$topics=getTopics();
-      				//Loop through the results and display them..
-      				foreach($topics as $item) {
-      					if ($_GET['id'] == $item["topicID"]) {
-      						echo '<li class="active"><a href=topic?id=' . $item["topicID"] . '>' . $item["topic"] . '</a></li>';
-      						$theTopic = $item["topic"];
-      					} else {
-      						echo '<li><a href=topic?id=' . $item["topicID"] . '>' . $item["topic"] . '</a></li>';
-      					}
-
-      				}
-            ?>
-          </ul>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <div class="placeholders">
-            <h1 class="page-header"><?php echo $theTopic ?></h1>
-<?php
-if (!empty($_GET['id'])){
-	//Declare the Array
-	$resources=array();
-  //Declare additional resources
-  $addtionalResources = array();
-	//Set the Array to call the function (this function is in internal_api.php)
-	$resources=getResources($_GET['id']);
-	//Loop through the results and display them.. y
-  foreach($resources as $item) {
-    if ($item['featured'] == 1)
-      $featuredResource = $item['resource'];
-    else if ($item['resourceType'] == "text")
-      $descriptionText = $item['resource'];
-    else
-      $addtionalResources[] = $item['resource'];
-
-		// echo "<pre>";
-  //   print_r($item);
-  //   echo "</pre>";
-    	// echo $item['topicID'] . ' ' .  $item['resourceType'] . ' ' .  $item['resource'] . ' ' . $item['featured'] . '<br>';
-	}
-}
-?>
-
-
-
-
-<?php
-  //Get the id of featured resource, because the video cannot be displayed by raw url
-  $tempArray = explode("watch?v=", $featuredResource);
-  $featuredResourceId = $tempArray[1];
-?>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $featuredResourceId ?>" frameborder="0" allowfullscreen></iframe>
-          </div>
-					<center><p><?php echo $descriptionText ?></p></center>
-          <div class="col-md-6">
-            <h2>Additional Resource</h2>
-            <ul>
-              <?php
-                foreach ($addtionalResources as $item) {
-                  echo "<li><a href=" . $item . ">" . $item . "</a></li>";
+              //Declare the Array
+              $topics=array();
+              //Set the Array to call the function (this function is in internal_api.php)
+              $topics=getTopics();
+              //Loop through the results and display them..
+              foreach($topics as $item) {
+                if ($_GET['id'] == $item["topicID"]) {
+                  echo '<li class="active"><a href=topic?id=' . $item["topicID"] . '>' . $item["topic"] . '</a></li>';
+                  $theTopic = $item["topic"];
+                } else {
+                  echo '<li><a href=topic?id=' . $item["topicID"] . '>' . $item["topic"] . '</a></li>';
                 }
-              ?>
-            </ul>
+
+              }
+            ?>
+        </ul>
+      </div>
+      <!-- End of Sidebar -->
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <div class="container-fluid main">
+          <div class="row">
+            <div class="placeholders">
+              <h1 class="page-header"><?php echo $theTopic ?></h1>
+                  <?php
+                    if (!empty($_GET['id'])){
+                    	//Declare the Array
+                    	$resources=array();
+                      //Declare additional resources
+                      $addtionalResources = array();
+                    	//Set the Array to call the function (this function is in internal_api.php)
+                    	$resources=getResources($_GET['id']);
+                    	//Loop through the results and display them.. y
+                      foreach($resources as $item) {
+                        if ($item['featured'] == 1)
+                          $featuredResource = $item['resource'];
+                        else if ($item['resourceType'] == "text")
+                          $descriptionText = $item['resource'];
+                        else
+                          $addtionalResources[] = $item['resource'];
+                    	}
+                    }
+
+                    //Get the id of featured resource, because the video cannot be displayed by raw url
+                    $tempArray = explode("watch?v=", $featuredResource);
+                    $featuredResourceId = $tempArray[1];
+                  ?>
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $featuredResourceId ?>" frameborder="0" allowfullscreen></iframe>
+            </div>
+  					<center><p><?php echo $descriptionText ?></p></center>
+            <div class="col-md-6">
+              <h2>Additional Resource</h2>
+              <ul>
+                <?php
+                  foreach ($addtionalResources as $item) {
+                    echo "<li><a href=" . $item . ">" . $item . "</a></li>";
+                  }
+                ?>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <h2>Practice</h2>
+              <ul>
+                <li><a href="#">Let's go!</a></li>
+              </ul>
+            </div>
+            <div class="col-xs-12"><a href="#" class="btn btn-default btn-block" id="sidebar-toggle">Toggle Sidebar</a></div>
           </div>
-          <div class="col-md-6">
-            <h2>Test Your Knowledge</h2>
-            <ul>
-              <li><a href="#">Let's go!</a></li>
-            </ul>
-          </div>
+        </div>
+      </div>
+      <!-- End of Page content -->
+
+
 
 
 
@@ -156,5 +157,14 @@ if (!empty($_GET['id'])){
     <script src="js/vendor/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <!-- Sidebar toggle script -->
+    <script>
+      $(document).ready(function() {
+        $("#sidebar-toggle").click( function(e){
+          e.preventDefault();
+          $("#wrapper").toggleClass("toggled");
+        });
+      });
+    </script>
   </body>
 </html>
