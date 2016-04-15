@@ -50,25 +50,27 @@
                   <center><p><?php echo $descriptionText ?></p></center>
                   
             </div>
+            
         </div>
+        
         <div class="table-responsive">
-        <center><table width="100%"  border="0" cellspacing="5" cellpadding="5">
+            <center><table  border="0" cellspacing="5" cellpadding="5">
                     <tr>
                       <td  width="90%"  align="left" valign="top">
-                        <h4>Additional Resources</h4>
+                        <h6>Additional Resources</h6>
                         </td>
-                      <td width="90%"align="right" valign="top" >
-                        <h4 >Practice</h4>
+                      <td width="90%" align="right" valign="top" >
+                        <h6>Practice</h6>
                         
                       </td>
                       </tr>
 
                  
                   <tr>
-                    <td align="left" valign="top" >
+                    <td  align="left" valign="top" >
                          <?php
                           foreach ($addtionalResources as $item) {
-                            echo "<a href=" . $item . ">" . $item . "</a><br>";
+                            echo "<a target ='_blank' href=" . $item . ">" . $item . "</a><br>";
                           }
                         ?>
                       </td>
@@ -79,6 +81,9 @@
               </table>
               </center>
               </div>
+              <br>
+              <br>
+             
       </div>
       <!-- /#page-content-wrapper -->
 

@@ -64,14 +64,13 @@ html {
   width: 100%;
 }
 
-adjust,img.test123{
+adjust,img.test123,table{
     max-width: 100%;
     min-width: 300px;
     height: auto;
 }
 
 .table {
-  width: : 100%;
   max-width: 100%;
     min-width: 300px;
     height: auto;
@@ -365,7 +364,9 @@ html {
 body h1,
 body h2,
 body h3,
-body h4 {
+body h4,
+body h5,
+body h6 {
   color: rgba(255, 255, 255, 0.9);
 }
 body p,
