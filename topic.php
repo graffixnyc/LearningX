@@ -22,49 +22,7 @@
   </head>
 
   <body>
-    <div id="wrapper">
-      <div class="overlay"></div>
-  
-      <!-- Sidebar -->
-      <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
-          <ul class="nav sidebar-nav">
-              <li class="sidebar-brand">
-                  <a href="#">
-                     Learning X
-                  </a>
-              </li>
-              <li>
-                  <a href="#"><i class="fa fa-fw fa-home"></i> Home</a>
-              </li>
-              <?php
-                //Declare the Array
-                $topics=array();
-                //Set the Array to call the function (this function is in internal_api.php)
-                $topics=getTopics();
-                //Loop through the results and display them..
-                foreach($topics as $item) {
-                  if ($_GET['id'] == $item["topicID"]) {
-                    echo '<li class="active"><a href=topic?id=' . $item["topicID"] . '>' . $item["topic"] . '</a></li>';
-                    $theTopic = $item["topic"];
-                  } else {
-                    echo '<li><a href=topic?id=' . $item["topicID"] . '>' . $item["topic"] . '</a></li>';
-                  }
-
-                }
-              ?>
-          </ul>
-      </nav>
-      <!-- /#sidebar-wrapper -->
-      <font color="white">Menu</font>
-      <br>
-      <br>
-      <!-- Page Content -->
-      <div id="page-content-wrapper">          
-        <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
-          <span class="hamb-top"></span>
-          <span class="hamb-middle"></span>
-          <span class="hamb-bottom"></span>
-        </button>
+  <?php include 'menu.php';?>
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 center">
@@ -116,7 +74,6 @@
       </div>
       <!-- /#page-content-wrapper -->
 
-      <button type="button" class="btn btn-primary">Primary</button>
     </div>
     <!-- /#wrapper -->
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
