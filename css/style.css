@@ -201,6 +201,7 @@ html {
   top: 20px;
   width: 32px;
   z-index: 999;
+
 }
 .hamburger:hover {
   outline: none;
@@ -215,7 +216,7 @@ html {
   -webkit-transform: translate3d(0, 0, 0);
   -webkit-transition: all 0.35s ease-in-out;
   color: #ffffff;
-  content: '';
+  content: 'MENU';
   display: block;
   font-size: 14px;
   line-height: 32px;
@@ -285,7 +286,7 @@ html {
   -webkit-transform: translate3d(0, 0, 0);
   -webkit-transition: all 0.35s ease-in-out;
   color: #ffffff;
-  content: 'Menu';
+  content: '';
   display: block;
   font-size: 14px;
   line-height: 32px;
