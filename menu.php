@@ -33,7 +33,7 @@
             </ul>
         </nav>
         <!-- /#sidebar-wrapper -->
-<font color="white">Menu</font>
+<font class= "menutext" color="white">Menu</font>
 <br>
 <br>
         <!-- Page Content -->
