@@ -9,7 +9,7 @@
 <html >
   <head>
     <meta charset="UTF-8">
-    <title>Awesome Bootstrap 3 Sidebar Navigation</title>
+    <title>LearningX | Your perfect Java teacher</title>
     
     
     <link rel="stylesheet" href="css/normalize.css">
