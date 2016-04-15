@@ -30,8 +30,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
-                        <center><h1 class="page-header">Learning X</h1>  
-                       <iframe width="853" height="480" src="https://www.youtube.com/embed/LRIIwxWVsOM" frameborder="0" allowfullscreen></iframe></center>
+                        <center>
+                            <h1 class="page-header">Learning X</h1> 
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/LRIIwxWVsOM" frameborder="0" width="560" height="315"></iframe>
+                            </div> 
+                        </center>
                     </div>
                 </div>
             </div>
