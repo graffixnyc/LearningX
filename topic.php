@@ -1,14 +1,7 @@
 <?php
   include_once("analyticstracking.php");
   include 'internal_api.php';
-  session_start();
-  if ($_SESSION["loggedin"]=='1'){
-    // echo 'LOGGED IN';
-  }
-  else{
-    $_SESSION["intended"]="topic";
-    header( 'Location: login' ) ;
-  }
+  
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +44,9 @@
                     $tempArray = explode("watch?v=", $featuredResource);
                     $featuredResourceId = $tempArray[1];
                   ?>
-                  <iframe class="center-block" width="560" height="315" src="https://www.youtube.com/embed/<?php echo $featuredResourceId ?>" frameborder="0" allowfullscreen></iframe>  
+                  <div class="video-container">
+                  <iframe class="center-block" width="560" height="315" src="https://www.youtube.com/embed/<?php echo $featuredResourceId ?>" frameborder="0" allowfullscreen></iframe> 
+                  </div> 
                   <center><p><?php echo $descriptionText ?></p></center>
                   <div class="col-md-6">
                     <h2>Additional Resource</h2>
