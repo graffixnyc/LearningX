@@ -95,6 +95,7 @@
           <div class="row">
             <div class="placeholders">
               <h1 class="page-header"><?php if($theTopic) echo $theTopic ?></h1>
+
                   <?php
                     if (!empty($_GET['id'])){
                     	//Declare the Array
