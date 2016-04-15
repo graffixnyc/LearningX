@@ -48,7 +48,7 @@
                   <iframe class="center-block" width="560" height="315" src="https://www.youtube.com/embed/<?php echo $featuredResourceId ?>" frameborder="0" allowfullscreen></iframe> 
                   </div> 
                   <center><p><?php echo $descriptionText ?></p></center>
-                  <div class="col-md-6">
+                  <div class="">
                     <h2>Additional Resource</h2>
                     <ul>
                       <?php
@@ -58,7 +58,7 @@
                       ?>
                     </ul>
                   </div>
-                  <div class="col-md-6">
+                  <div class="">
                     <h2>Practice</h2>
                     <ul>
                       <li><a href="#">Let's go!</a></li>
