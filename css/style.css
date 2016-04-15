@@ -63,11 +63,20 @@ html {
   padding-top: 70px;
   width: 100%;
 }
-adjust,img.test123,table{
-max-width: 100%;
-min-width: 300px;
-height: auto;
+
+adjust,img.test123{
+    max-width: 100%;
+    min-width: 300px;
+    height: auto;
 }
+
+.table {
+  width: : 100%;
+  max-width: 100%;
+    min-width: 300px;
+    height: auto;
+}
+
 /*-------------------------------*/
 /*     Sidebar nav styles        */
 /*-------------------------------*/

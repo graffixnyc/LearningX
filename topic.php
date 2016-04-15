@@ -47,40 +47,38 @@
                   <div class="video-container">
                   <iframe class="center-block" width="560" height="315" src="https://www.youtube.com/embed/<?php echo $featuredResourceId ?>" frameborder="0" allowfullscreen></iframe> 
                   </div> 
-                  <center><p><?php echo $descriptionText ?></p>
-                  <table  border="0" cellspacing="5" cellpadding="5">
-                  <div class="">
+                  <center><p><?php echo $descriptionText ?></p></center>
+                  
+            </div>
+        </div>
+        <div class="table-responsive">
+        <center><table width="100%"  border="0" cellspacing="5" cellpadding="5">
                     <tr>
-                      <td align="left" valign="top" width="90%">
+                      <td  width="90%"  align="left" valign="top">
                         <h4>Additional Resources</h4>
                         </td>
-                      <td align="right" valign="top" width="10%">
-                        <h4>Practice</h4>
+                      <td width="90%"align="right" valign="top" >
+                        <h4 >Practice</h4>
                         
                       </td>
                       </tr>
-                    
-                  </div>
 
                  
                   <tr>
-                    <td align="left" valign="top" width="90%">
+                    <td align="left" valign="top" >
                          <?php
                           foreach ($addtionalResources as $item) {
                             echo "<a href=" . $item . ">" . $item . "</a><br>";
                           }
                         ?>
                       </td>
-                    <td align="right" valign="top" width="10%">  
-                      <ul>
+                    <td align="right" valign="top">  
                         <a href="#">Let's go!</a>
-                      
                     </td>
                   </tr>
               </table>
               </center>
-            </div>
-        </div>
+              </div>
       </div>
       <!-- /#page-content-wrapper -->
 
