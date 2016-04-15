@@ -49,6 +49,9 @@
             echo '<li><a href=topic?id=' . $item["topicID"] . '>' . $item["topic"] . '</a></li>';
                 }
             ?>
+            <li>
+                   
+                </li>
             </ul>
         </nav>
         <!-- /#sidebar-wrapper -->

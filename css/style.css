@@ -11,7 +11,7 @@ body {
 body,
 html {
   height: 100%;
-  background-color: #428bca;
+  background-color: #28547a;
 }
 .nav .open > a {
   background-color: transparent;
@@ -118,6 +118,33 @@ html {
   background-color: #428bca;
 }
 .sidebar-nav li:nth-child(9):before {
+  background-color: #428bca;
+}
+.sidebar-nav li:nth-child(10):before {
+  background-color: #428bca;
+}
+.sidebar-nav li:nth-child(11):before {
+  background-color: #428bca;
+}
+.sidebar-nav li:nth-child(12):before {
+  background-color: #428bca;
+}
+.sidebar-nav li:nth-child(13):before {
+  background-color: #428bca;
+}
+.sidebar-nav li:nth-child(14):before {
+  background-color: #428bca;
+}
+.sidebar-nav li:nth-child(15):before {
+  background-color: #428bca;
+}
+.sidebar-nav li:nth-child(16):before {
+  background-color: #428bca;
+}
+.sidebar-nav li:nth-child(17):before {
+  background-color: #428bca;
+}
+.sidebar-nav li:nth-child(18):before {
   background-color: #428bca;
 }
 .sidebar-nav li:hover:before {
@@ -290,7 +317,7 @@ html {
 /* SOME DEMO STYLES - NOT REQUIRED */
 body,
 html {
-  background-color: #428bca;
+  background-color: #28547a;
 }
 body h1,
 body h2,
