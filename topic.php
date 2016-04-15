@@ -20,7 +20,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 center">
-                  <h1 class="page-header text-center"><?php if(isset($theTopic)) echo $theTopic ?></h1>
+                  <h2 class="page-header text-center"><?php if(isset($theTopic)) echo $theTopic ?></h2>
                   <?php
                     if (!empty($_GET['id'])){
                       //Declare the Array
@@ -47,24 +47,38 @@
                   <div class="video-container">
                   <iframe class="center-block" width="560" height="315" src="https://www.youtube.com/embed/<?php echo $featuredResourceId ?>" frameborder="0" allowfullscreen></iframe> 
                   </div> 
-                  <center><p><?php echo $descriptionText ?></p></center>
+                  <center><p><?php echo $descriptionText ?></p>
+                  <table  border="0" cellspacing="5" cellpadding="5">
                   <div class="">
-                    <h2>Additional Resource</h2>
-                    <ul>
-                      <?php
-                        foreach ($addtionalResources as $item) {
-                          echo "<li><a href=" . $item . ">" . $item . "</a></li>";
-                        }
-                      ?>
-                    </ul>
+                    <tr>
+                      <td align="left" valign="top" width="90%">
+                        <h4>Additional Resources</h4>
+                        </td>
+                      <td align="right" valign="top" width="10%">
+                        <h4>Practice</h4>
+                        
+                      </td>
+                      </tr>
+                    
                   </div>
-                  <div class="">
-                    <h2>Practice</h2>
-                    <ul>
-                      <li><a href="#">Let's go!</a></li>
-                    </ul>
-                  </div>
-                </div>
+
+                 
+                  <tr>
+                    <td align="left" valign="top" width="90%">
+                         <?php
+                          foreach ($addtionalResources as $item) {
+                            echo "<a href=" . $item . ">" . $item . "</a><br>";
+                          }
+                        ?>
+                      </td>
+                    <td align="right" valign="top" width="10%">  
+                      <ul>
+                        <a href="#">Let's go!</a>
+                      
+                    </td>
+                  </tr>
+              </table>
+              </center>
             </div>
         </div>
       </div>

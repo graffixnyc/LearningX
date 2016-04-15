@@ -42,7 +42,7 @@
             </div>
         </div>
         <!-- /#page-content-wrapper -->
-<button type="button" class="btn btn-primary">Primary</button>
+
     </div>
     <!-- /#wrapper -->
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
