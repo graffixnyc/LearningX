@@ -3,7 +3,13 @@
 	include 'internal_api.php';
 
 	session_start();
-	
+	if ($_SESSION["loggedin"]=='1'){ 
+		// echo 'LOGGED IN'; 
+	}
+	else{
+		$_SESSION["intended"]="mainmenu";
+		header( 'Location: login' ) ;
+	}
 ?>
 
 <!DOCTYPE html>
