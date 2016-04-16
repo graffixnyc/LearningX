@@ -1,7 +1,7 @@
 <?php
   include_once("analyticstracking.php");
   include 'internal_api.php';
-  
+  session_start();
 ?>
 
 <!DOCTYPE html>

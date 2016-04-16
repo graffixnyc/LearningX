@@ -9,11 +9,36 @@
                        Learning X
                     </a>
                 </li>
+                <?php   if (isset($_SESSION["instructor"])){
+                            if ($_SESSION["instructor"]==1){ 
+                                echo '<li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-cog"></i> Instructor Settings</a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><a href="#">Add Topic</a></li>
+                                                <li><a href="#">Add Topic Resources</a></li>
+                                                <li><a href="#">Add Topic Questions</a></li>
+                                            </ul>
+                                        </li>';
+                            }  
+                        
+                            else if ($_SESSION["instructor"]==0){ 
+                                echo   '<li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-cog"></i> Student Settings</a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><a href="#">Blah</a></li>
+                                                <li><a href="#">Blah</a></li>
+                                                <li><a href="#">Blah</a></li>
+                                            </ul>
+                                        </li>';
+                            }
+                        }
+                ?> 
                 <li>
                     <a href="index"><i class="fa fa-fw fa-home"></i> Home</a>
                 </li>
-            <?php
-                //Declare the Array
+
+            
+               <?php //Declare the Array
                 $topics=array(); 
                 //Set the Array to call the function (this function is in internal_api.php)
                 $topics=getTopics();

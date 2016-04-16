@@ -11,13 +11,14 @@
 			$_SESSION["loggedin"]=$user[0]["loggedin"];
 			$_SESSION["fname"]=$user[0]["firstname"];
 			$_SESSION["uname"]=$user[0]["uName"];
+			$_SESSION["instructor"]=$user[0]["instructor"];
 			unset($_SESSION["loginfailed"]);
 			if (isset($_SESSION["intended"])){
 				echo $_SESSION["intended"];
 				header( 'Location:' . $_SESSION["intended"]) ;
 			}
 			else{
-				header( 'Location: mainmenu') ;
+				header( 'Location: index') ;
 				//echo '<meta http-equiv="refresh" content="0; URL=mainmenu">';
 			}
 		}
