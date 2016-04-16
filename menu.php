@@ -17,6 +17,7 @@
                                                 <li><a href="#">Add Topic</a></li>
                                                 <li><a href="#">Add Topic Resources</a></li>
                                                 <li><a href="#">Add Topic Questions</a></li>
+                                                <li><a href="#">Account Settings</a></li>
                                                 <li><a href="logout">Logout</a></li>
                                             </ul>
                                         </li>';
@@ -26,9 +27,9 @@
                                 echo   '<li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-user"></i> Student Settings</a>
                                             <ul class="dropdown-menu" role="menu">
+                                                <li><a href="userprogress">Progress</a></li>
                                                 <li><a href="#">Blah</a></li>
-                                                <li><a href="#">Blah</a></li>
-                                                <li><a href="#">Blah</a></li>
+                                                  <li><a href="#">Account Settings</a></li>
                                                 <li><a href="logout">Logout</a></li>
                                             </ul>
                                         </li>';
@@ -59,7 +60,7 @@
                 }
             ?>
             <li>
-                   
+                    <li><a href="quiz">Test Your Knowledge</a></li>  
                 </li>
             </ul>
         </nav>

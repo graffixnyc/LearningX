@@ -84,7 +84,7 @@
                     
                     <?php
                         if (isset($_SESSION["newreg"])){
-                            echo'<h2 style="color:salmon">You have been successfully registered.  Please login below. </h2>';
+                            echo'<h4 style="color:red">You have been successfully registered.  Please login below. </h4>';
                             unset($_SESSION["newreg"]);
                         }
                         if (isset($_SESSION["loginfailed"])){
@@ -93,7 +93,7 @@
                             
                     ?>
                     <script type="text/javascript">document.querySelector('#toast').dismiss();</script>
-                    <h2 style="color:salmon">Login Failed, Please try again </h2>
+                    <h4 style="color:red">Login Failed, Please try again </h4>
                     <script type="text/javascript">document.querySelector('#toast2').show();</script>
                     <?php }?>
                     
