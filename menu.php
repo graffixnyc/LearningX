@@ -17,6 +17,7 @@
                                                 <li><a href="#">Add Topic</a></li>
                                                 <li><a href="#">Add Topic Resources</a></li>
                                                 <li><a href="#">Add Topic Questions</a></li>
+                                                <li><a href="logout">Logout</a></li>
                                             </ul>
                                         </li>';
                             }  
@@ -28,6 +29,7 @@
                                                 <li><a href="#">Blah</a></li>
                                                 <li><a href="#">Blah</a></li>
                                                 <li><a href="#">Blah</a></li>
+                                                <li><a href="logout">Logout</a></li>
                                             </ul>
                                         </li>';
                             }
