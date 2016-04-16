@@ -28,18 +28,18 @@
                     if (!empty($_GET['id'])){
                       //Declare the Array
                       $resources=array();
-                      //Declare additional resources
+                      //Declare additional resources (including all the fields)
                       $addtionalResources = array();
                       //Set the Array to call the function (this function is in internal_api.php)
                       $resources=getResources($_GET['id']);
                       //Loop through the results and display them.. y
-                      foreach($resources as $item) {
+                      foreach($resources as $item) {                       
                         if ($item['featured'] == 1)
                           $featuredResource = $item['resource'];
                         else if ($item['resourceType'] == "text")
                           $descriptionText = $item['resource'];
                         else
-                          $addtionalResources[] = $item['resource'];
+                          $addtionalResources[] = $item;
                       }
                     }
 
@@ -51,40 +51,53 @@
                   <iframe class="center-block" width="560" height="315" src="https://www.youtube.com/embed/<?php echo $featuredResourceId ?>" frameborder="0" allowfullscreen></iframe> 
                   </div> 
                   <center><p><?php echo $descriptionText ?></p></center>
-                  
-            </div>
-            
-        </div>
-        
-        <div class="table-responsive">
-            <center>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th><h5>Additonal Resources</h5></th>
-                    <th><h5>Practice</h5></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                         <?php
-                          foreach ($addtionalResources as $item) {
-                            echo "<a target ='_blank' href=" . $item . ">" . $item . "</a><br>";
-                          }
-                        ?>
-                    </td>
-                    <td>  
-                        <button type="button" class="btn btn-success">Let's Go!</button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </center>
-        </div>
-              <br>
-              <br>
-             
+
+<!--              <div class="">
+                    <h4>Additional Resource</h4>
+                    <ul>
+                      <?php
+                        foreach ($addtionalResources as $item) {
+                          echo "<li><a href=" . $itemresourceDisplayName . ">" . $item['resource'] . "</a></li>";
+                        }
+                      ?>
+                    </ul>
+                  </div>
+                  <div class="">
+                    <h4>Practice</h4>
+                    <ul>
+                      <li><a href="#">Let's go!</a></li>
+                    </ul>
+                  </div> -->
+
+                  <div class="table-responsive">
+                    <center>
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th><h5>Additonal Resources</h5></th>
+                            <th><h5>Practice</h5></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                                 <?php
+                                  foreach ($addtionalResources as $item) {
+                                    echo "<a target ='_blank' href=" . $item['resource'] . ">" . $item['resourceDisplayName'] . "</a><br>";
+                                  }
+                                ?>
+                            </td>
+                            <td>  
+                                <button type="button" class="btn btn-success">Let's Go!</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </center>
+                  </div>  
+              </div> 
+            </div>            
+        </div>      
       </div>
       <!-- /#page-content-wrapper -->
 
