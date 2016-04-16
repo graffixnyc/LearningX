@@ -88,7 +88,10 @@
                                 ?>
                             </td>
                             <td>  
-                                <button type="button" class="btn btn-success">Let's Go!</button>
+                              <form method="POST" action="practice.php">
+                                <input type="hidden" name="topicid" value=<?php echo $_GET['id']?>></input>
+                                <input type="submit" class="btn btn-success" value="Let's Go!">
+                              </form>
                             </td>
                           </tr>
                         </tbody>
