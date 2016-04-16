@@ -35,8 +35,8 @@
                             }
                         }
                         else{
-                            echo '<li><a href="#"><i class="fa fa-fw fa-user"></i> Register</a></li>';
-                            echo '<li><a href="#"><i class="fa fa-fw fa-sign-in"></i> Login</a></li>';
+                            echo '<li><a href="register"><i class="fa fa-fw fa-user"></i> Register</a></li>';
+                            echo '<li><a href="login"><i class="fa fa-fw fa-sign-in"></i> Login</a></li>';
                         }
                 ?> 
                 <li>
