@@ -69,7 +69,7 @@
                     </ul>
                   </div> -->
 
-                  <div class="table-responsive">
+                  <div class="table-responsive" style="border: 0">
                     <center>
                       <table class="table">
                         <thead>
