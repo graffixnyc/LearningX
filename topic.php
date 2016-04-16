@@ -11,7 +11,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>LearningX | Your perfect Java teacher</title>
     <link rel="stylesheet" href="css/normalize.css">
-    <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+    
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/style.css">  
   </head>
 
@@ -54,33 +57,31 @@
         </div>
         
         <div class="table-responsive">
-            <center><table  border="0" cellspacing="5" cellpadding="5">
-                    <tr>
-                      <td  width="90%"  align="left" valign="top">
-                        <h6>Additional Resources</h6>
-                        </td>
-                      <td width="90%" align="right" valign="top" >
-                        <h6>Practice</h6>
-                        
-                      </td>
-                      </tr>
-
-                 
+            <center>
+              <table class="table">
+                <thead>
                   <tr>
-                    <td  align="left" valign="top" >
+                    <th><h5>Additonal Resources</h5></th>
+                    <th><h5>Practice</h5></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
                          <?php
                           foreach ($addtionalResources as $item) {
                             echo "<a target ='_blank' href=" . $item . ">" . $item . "</a><br>";
                           }
                         ?>
-                      </td>
-                    <td align="right" valign="top">  
-                        <a href="#">Let's go!</a>
+                    </td>
+                    <td>  
+                        <button type="button" class="btn btn-success">Let's Go!</button>
                     </td>
                   </tr>
+                </tbody>
               </table>
-              </center>
-              </div>
+            </center>
+        </div>
               <br>
               <br>
              
