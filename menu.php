@@ -24,7 +24,7 @@
                         
                             else if ($_SESSION["instructor"]==0){ 
                                 echo   '<li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-cog"></i> Student Settings</a>
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-user"></i> Student Settings</a>
                                             <ul class="dropdown-menu" role="menu">
                                                 <li><a href="#">Blah</a></li>
                                                 <li><a href="#">Blah</a></li>
@@ -33,6 +33,10 @@
                                             </ul>
                                         </li>';
                             }
+                        }
+                        else{
+                            echo '<li><a href="#"><i class="fa fa-fw fa-user"></i> Register</a></li>';
+                            echo '<li><a href="#"><i class="fa fa-fw fa-sign-in"></i> Login</a></li>';
                         }
                 ?> 
                 <li>
