@@ -391,6 +391,7 @@ body h6 {
   color: rgba(255, 255, 255, 0.9);
 }
 body p,
+body label,
 body blockquote {
   color: rgba(255, 255, 255, 0.7);
 }

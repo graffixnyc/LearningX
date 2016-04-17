@@ -89,7 +89,7 @@
                                 ?>
                             </td>
                             <td>  
-                              <form method="POST" action="practice.php">
+                              <form method="POST" action="practice">
                                 <input type="hidden" name="topicid" value=<?php echo $_GET['id']?>></input>
                                 <input type="submit" class="btn btn-success" value="Let's Go!">
                               </form>
