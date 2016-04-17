@@ -134,20 +134,22 @@ function getResource() {
     document.getElementById('linkDiv').style.display="none";
 
   }
-   if (jQuery("#resourceSelect option:selected").val()=='Text'){
+  else if (jQuery("#resourceSelect option:selected").val()=='Text'){
     document.getElementById('textDiv').style.display="block";
     document.getElementById('videoDiv').style.display="none";
     document.getElementById('linkDiv').style.display="none";
 
   }
     
-  if (jQuery("#resourceSelect option:selected").val()=='Link'){
+  else if (jQuery("#resourceSelect option:selected").val()=='Link'){
     document.getElementById('linkDiv').style.display="block";
     document.getElementById('videoDiv').style.display="none";
     document.getElementById('textDiv').style.display="none";
-    
-    
-    
+  }
+  else{
+    document.getElementById('linkDiv').style.display="none";
+    document.getElementById('videoDiv').style.display="none";
+    document.getElementById('textDiv').style.display="none";
   }
 
   
