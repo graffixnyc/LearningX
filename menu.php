@@ -51,12 +51,12 @@
                 $topics=getTopics();
                 //Loop through the results and display them.. you can write out HTML with them as you see I'm writing out the topic and then the BR HTML tag.  If you need help concatenating the tags let me know
                 foreach($topics as $item) {
-                    if (isset($_GET['id']) && $_GET['id'] == $item["topicID"]) {
-                        echo '<li class="active"><a href=topic?id=' . $item["topicID"] . '>' . $item["topic"] . '</a></li>';
-                        $theTopic = $item["topic"];
-                    } else {
-                        echo '<li><a href=topic?id=' . $item["topicID"] . '>' . $item["topic"] . '</a></li>';
-                    }
+            if (isset($_GET['id']) && $_GET['id'] == $item["topicID"]) {
+                    echo '<li class="active"><a href=topic?id=' . $item["topicID"] . '>' . $item["topic"] . '</a></li>';
+                    $theTopic = $item["topic"];
+                  } else {
+                    echo '<li><a href=topic?id=' . $item["topicID"] . '>' . $item["topic"] . '</a></li>';
+                  }
                 }
             ?>
             <li>
