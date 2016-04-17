@@ -73,6 +73,23 @@ function getPractice($topicid) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	} 
 }
+function addTopic($topic) {
+	$sql = "CALL addTopic(:topic)";
+	try {
+		$dbCon = getConnection();
+		$stmt = $dbCon->prepare($sql);
+		$stmt->bindParam("topic", $topic);
+		$stmt->execute();
+		$results = array();
+		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+			$results[] = $row;
+		}
+		return $results;
+	}
+	catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+	} 
+}
 function getAnswers($questionid) {
 	$sql = "CALL getAnswers(:questionid)";
 	try {
