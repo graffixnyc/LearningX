@@ -51,8 +51,9 @@
 
   <body>
         <?php include 'menu.php';?>
-        
+        <?php include 'header.html';?>
             <div class="container" >
+            
                 <div class="row" >
                     <div class="col-lg-8 col-lg-offset-2" >
                         <?php if (isset($_SESSION["instructor"]) && $_SESSION["instructor"]==1){   ?>
