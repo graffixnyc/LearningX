@@ -30,6 +30,7 @@ if (isset($_POST["topicid"])) {
 
   <body>
   <?php include 'menu.php';?>
+  <?php include 'header.html';?>
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">

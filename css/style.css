@@ -60,6 +60,11 @@ font-weight: bold;
 color:black;
 padding: 10px 5px;
 }
+ adjust,img.test123{
+    max-width: 100%;
+    min-width: 300px;
+    height: auto;
+}
 .nav .open > a:focus {
   background-color: transparent;
 }
