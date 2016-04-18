@@ -56,14 +56,17 @@
                     <div class="col-lg-8 col-lg-offset-2">
                         <?php if (isset($_SESSION["instructor"]) && $_SESSION["instructor"]==1){   ?>
                         <center>
-                           <h3>Add Resources</h2>
+                           <h3>Add Resources</h2><br>
+                           <p style="font-size: 16px;font-weight: bold;">Select a topic that you want to add resources to, then select the resource type from the dropdown and fill out the information.  You can add 1 to 3 resources per form submission; 1 video, 1 text and 1 link. Once your fill out the first resrouce you can select a different resource type from the dropdown and populate that as well.  There can be only one "Text" resource per topic.  Any resource you set to Text will replace the current text under the featured video on the topic page.  You can use HTML tags in the text resource type.</p>
                       <paper-material elevation="3" class="card">
+
+ 
   
   <center>
     <?php if (isset($topic[0]["created"]) && $topic[0]["created"]=='Success'){?>
          <h4 style="color:red">Resource Created</h4>
          <?php }?>
-    <form is="iron-form" id="form" method="post">
+            <form is="iron-form" id="form" method="post">
     
     <select class="myselect" id="topicSelect" onchange="getTopic()">
       <option value="0">Select Topic</option>
@@ -78,6 +81,7 @@
 </select>
   <paper-input class="my-class"  id="topicid"  name="topicid" style="display:none;"></paper-input>
 <br><br>
+<div id="resourceDiv" style="display: none;">
 <select class="myselect" id="resourceSelect" onchange="getResource()">
       <option value="0"><b>Select Resource Type</b></option>
       <option value="Video"><b>Video</b></option>
@@ -85,6 +89,7 @@
       <option value="Link"><b>Link</b></option>
       
 </select>
+</div>
 <br>
 <br>
 
@@ -114,7 +119,7 @@
    
       
       
-      <paper-button id="my-button" raised onclick="submitForm();">Add Topic</paper-button>
+      <paper-button id="my-button" raised onclick="submitForm();">Add Resource(s)</paper-button>
       <br>
       <button type="submit" id="SubmitButton" name="submit" style="visibility:hidden;"></button>
 
@@ -129,6 +134,7 @@
 function getTopic() {
   //alert(jQuery("#topicSelect option:selected").val());
   document.getElementById("topicid").value=jQuery("#topicSelect option:selected").val();
+  document.getElementById("resourceDiv").style.display="block";
 }
    
 function getResource() {
