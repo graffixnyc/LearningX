@@ -4,6 +4,7 @@
 
     session_start();
     if (!empty($_POST)){
+      print_r($_POST);
     //$resource=array(); 
     //$topic=addTopic($_POST["topic"]);
     
@@ -20,7 +21,7 @@
       <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     
     <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-        <link rel="import" href="bower_components/paper-submit/paper-submit.html">
+        
         <link rel="import" href="bower_components/paper-input/paper-textarea.html">
         <link rel="import" href="bower_components/paper-checkbox/paper-checkbox.html">
         <link rel="import" href="bower_components/iron-form/iron-form.html">
@@ -32,11 +33,10 @@
         <link rel="import" href="bower_components/paper-input/paper-input.html">
         <link rel="import" href="bower_components/paper-button/paper-button.html">
         <link rel="stylesheet" href="css/normalize.css">
-        <link href="css/bootstrap-material-design.css" rel="stylesheet">
-  <link href="css/ripples.min.css" rel="stylesheet">
+       
 
   <!-- Dropdown.js -->
-  <link href="//cdn.rawgit.com/FezVrasta/dropdown.js/master/jquery.dropdown.css" rel="stylesheet">
+  
     <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
     <link rel="stylesheet" href="css/style.css">
     <link rel="import" href="bower_components/paper-material/paper-material.html">
@@ -76,7 +76,7 @@
                 }
                 ?>
 </select>
-  
+  <paper-input class="my-class"  id="topicid"  name="topicid" style="display:none;"></paper-input>
 <br><br>
 <select class="myselect" id="resourceSelect" onchange="getResource()">
       <option value="0"><b>Select Resource Type</b></option>
@@ -89,9 +89,12 @@
 <br>
 
 <div id="videoDiv" style="display:none;">
-    <paper-input class="my-class"  id="videourl"  name="videourl" label="Enter a video URL" required></paper-input>
+    <paper-input class="my-class"  id="videourl"  name="videourl" label="Enter a Video URL" ></paper-input>
+    <paper-input class="my-class"  id="videotext"  name="videotext" label="Enter a Title for this Video" ></paper-input>
     <br>
-  <paper-checkbox class="my-check" name="featured" id="featured" >Featured</paper-checkbox>
+  <paper-checkbox class="my-check" name="featuredcheck" id="featuredcheck" onclick="toggleFeatured();" >Featured</paper-checkbox>
+  <br>
+  <paper-input class="my-class"  id="featured"  name="featured"  value="0" style="display:none;"></paper-input>
 <br>
 </div>
 
@@ -103,13 +106,14 @@
 
 
 <div id="linkDiv" style="display:none;">
-    <paper-input class="my-class"  id="linkurl"  name="linkurl" label="Enter a URL" required></paper-input>
+    <paper-input class="my-class"  id="linkurl"  name="linkurl" label="Enter a URL" ></paper-input>
+    <paper-input class="my-class"  id="linktext"  name="linktext" label="Enter a Title for this Link" ></paper-input>
    
 <br>
 </div>
    
       
-      <input is="paper-input" id="topicid" name="topicid" >
+      
       <paper-button id="my-button" raised onclick="submitForm();">Add Topic</paper-button>
       <br>
       <button type="submit" id="SubmitButton" name="submit" style="visibility:hidden;"></button>
@@ -154,22 +158,20 @@ function getResource() {
 
   
 }
-    
+ function toggleFeatured(){
+  
+      if (document.getElementById('featured').value=="1"){
+        document.getElementById('featured').value="0";
+      }
+      else {
+        alert ("Setting this video to be featured will replace the video that is currently featured(if there is one) and that video will be moved to additional resources")
+        document.getElementById('featured').value="1";
+      }
+      alert (document.getElementById('featured').value);
+    }   
 
     function submitForm(){
-       
-    if (document.getElementById('topic').value==''){
-        document.querySelector('#toast2').text= "Topic Name Cannot be blank! Please Re-enter";
-        document.querySelector('#toast2').show();
-    }
-    
-    else{
-    
-        document.querySelector('#toast').text= "Adding Topic...";
-        document.querySelector('#toast').show();
-        document.getElementById('SubmitButton').click();
-        console.log("Submitted!")
-    }
+     document.getElementById('SubmitButton').click();
     
     }
     

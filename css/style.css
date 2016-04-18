@@ -76,7 +76,7 @@ padding: 10px 5px;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
-  background: #1a1a1a;
+  background: white;
   height: 100%;
   left: 220px;
   margin-left: -220px;
@@ -196,7 +196,7 @@ adjust,img.test123,table{
   width: 100%;
 }
 .sidebar-nav li a {
-  color: #dddddd;
+  color: black;
   display: block;
   padding: 10px 15px 10px 30px;
   text-decoration: none;
@@ -207,7 +207,7 @@ adjust,img.test123,table{
   width: 100%;
 }
 .sidebar-nav .dropdown-menu {
-  background-color: #222222;
+  background-color: white;
   border-radius: 0;
   border: none;
   box-shadow: none;
