@@ -21,7 +21,8 @@
       <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     
     <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-        
+        <link rel="import" href="bower_components/paper-dialog/paper-dialog.html">
+        <link rel="import" href="bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
         <link rel="import" href="bower_components/paper-input/paper-textarea.html">
         <link rel="import" href="bower_components/paper-checkbox/paper-checkbox.html">
         <link rel="import" href="bower_components/iron-form/iron-form.html">
@@ -55,9 +56,13 @@
                 <div class="row" >
                     <div class="col-lg-8 col-lg-offset-2" >
                         <?php if (isset($_SESSION["instructor"]) && $_SESSION["instructor"]==1){   ?>
+                        
                         <center>
-                           <h3>Add Resources</h2><br>
-                           <p style="font-size: 16px;font-weight: bold;">Select a topic that you want to add resources to, then select the resource type from the dropdown and fill out the information.  You can add 1 to 3 resources per form submission; 1 video, 1 text and 1 link. Once your fill out the first resrouce you can select a different resource type from the dropdown and populate that as well.  There can be only one "Text" resource per topic.  Any resource you set to Text will replace the current text under the featured video on the topic page.  You can use HTML tags in the text resource type.</p>
+                           <h3>Add Resources</h3><br></center>
+                          <paper-button id="my-button2" class="my-button2" raised onclick="showTaskDialog()">Instructions </paper-button>
+                          <center>
+                           
+                          
                       <paper-material elevation="3" class="card">
 
  
@@ -134,7 +139,12 @@
 function getTopic() {
   //alert(jQuery("#topicSelect option:selected").val());
   document.getElementById("topicid").value=jQuery("#topicSelect option:selected").val();
-  document.getElementById("resourceDiv").style.display="block";
+  if (document.getElementById("topicid").value=jQuery("#topicSelect option:selected").val()==0){
+  	document.getElementById("resourceDiv").style.display="none";
+  }
+  else{
+  	document.getElementById("resourceDiv").style.display="block";
+  }
 }
    
 function getResource() {
@@ -208,6 +218,9 @@ if (document.getElementById('videourl').value!='' && document.getElementById('vi
      //document.getElementById('SubmitButton').click();
     
     }
+    function showTaskDialog(){
+			document.getElementById('instructions').toggle();
+		}
     
        </script>
   </center>
@@ -227,6 +240,19 @@ if (document.getElementById('videourl').value!='' && document.getElementById('vi
         <!-- /#page-content-wrapper -->
  <paper-toast id="toast" text="Registering..."></paper-toast>
       <paper-toast  visible="false" id="toast2" text="Login Failed, Please Try Again..."></paper-toast>
+     
+     
+     <paper-dialog id="instructions" name="instructions" modal on-iron-overlay-closed="dismissDialog">
+      <h2 style="color:  #28547a;">Instructions</h2>
+       <paper-dialog-scrollable>
+     <p style="color:black;font-size: 16px;font-weight: bold;">Select a topic that you want to add resources to, then select the resource type from the dropdown and fill out the information.  You can add 1 to 3 resources per form submission; 1 video, 1 text and 1 link. You can submit more than 3 resources but only 3 per form submission. Once your fill out the first resrouce you can select a different resource type from the dropdown and populate that as well.  There can be only one "Text" resource per topic.  Any resource you set to Text will replace the current text under the featured video on the topic page.  You can use HTML tags in the text resource type. There has to be one featured video per topic.  If you add a new video and select it to be featured it will replace the currently featured video (if there is one) and then move that video url to the additonal resoucres section</p>
+     </paper-dialog-scrollable>
+     <div class="buttons">
+		<paper-button style="color:#28547a;" dialog-dismiss>OK</paper-button>
+										
+									</div>
+    </paper-dialog>
+
     </div>
     <!-- /#wrapper -->
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
@@ -235,7 +261,6 @@ if (document.getElementById('videourl').value!='' && document.getElementById('vi
         <script src="js/index.js"></script>
 
 
-    
     
     
   </body>
