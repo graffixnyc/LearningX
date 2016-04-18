@@ -14,6 +14,7 @@
                                 echo '<li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-cog"></i> Instructor Settings</a>
                                             <ul class="dropdown-menu" role="menu">
+                                                <li class="dropdown-header"></li>
                                                 <li><a href="addtopic">Add Topic</a></li>
                                                 <li><a href="addresources">Add Topic Resources</a></li>
                                                 <li><a href="addquestions">Add Topic Questions</a></li>
@@ -27,6 +28,7 @@
                                 echo   '<li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-user"></i> Student Settings</a>
                                             <ul class="dropdown-menu" role="menu">
+                                                <li class="dropdown-header"></li>
                                                 <li><a href="userprogress">Progress</a></li>
                                                 <li><a href="#">Blah</a></li>
                                                   <li><a href="#">Account Settings</a></li>

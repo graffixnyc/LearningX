@@ -94,7 +94,7 @@
 <br>
 
 <div id="videoDiv" style="display:none;">
-    <paper-input class="my-class"  id="videourl"  name="videourl" label="Enter a Video URL" ></paper-input>
+    <paper-input class="my-class" type="url" id="videourl"  name="videourl" label="Enter a Video URL" ></paper-input>
     <paper-input class="my-class"  id="videotext"  name="videotext" label="Enter a Title for this Video" ></paper-input>
     <br>
   <paper-checkbox class="my-check" name="featuredcheck" id="featuredcheck" onclick="toggleFeatured();" >Featured</paper-checkbox>
@@ -111,7 +111,7 @@
 
 
 <div id="linkDiv" style="display:none;">
-    <paper-input class="my-class"  id="linkurl"  name="linkurl" label="Enter a URL" ></paper-input>
+    <paper-input class="my-class" type="url" id="linkurl"  name="linkurl" label="Enter a URL" ></paper-input>
     <paper-input class="my-class"  id="linktext"  name="linktext" label="Enter a Title for this Link" ></paper-input>
    
 <br>

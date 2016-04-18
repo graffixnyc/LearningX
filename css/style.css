@@ -46,7 +46,7 @@ html {
 width: 300px;
 font-size: 16px;
 font-weight: bold;
-color: black;
+color:black;
 padding: 10px 5px;
 }
 .nav .open > a:focus {
@@ -76,7 +76,7 @@ padding: 10px 5px;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
-  background: white;
+  background: #1a1a1a;
   height: 100%;
   left: 220px;
   margin-left: -220px;
@@ -196,7 +196,7 @@ adjust,img.test123,table{
   width: 100%;
 }
 .sidebar-nav li a {
-  color: black;
+  color: #dddddd;
   display: block;
   padding: 10px 15px 10px 30px;
   text-decoration: none;
@@ -207,7 +207,7 @@ adjust,img.test123,table{
   width: 100%;
 }
 .sidebar-nav .dropdown-menu {
-  background-color: white;
+  background-color: #222222;
   border-radius: 0;
   border: none;
   box-shadow: none;
