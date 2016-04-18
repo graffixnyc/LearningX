@@ -59,7 +59,7 @@
                         
                         <center>
                            <h3>Add Resources</h3><br></center>
-                          <paper-button id="my-button2" class="my-button2" raised onclick="showTaskDialog()">Instructions </paper-button>
+                          <paper-button id="my-button2" class="my-button2"  onclick="showTaskDialog()">Instructions </paper-button>
                           <center>
                            
                           
@@ -141,6 +141,9 @@ function getTopic() {
   document.getElementById("topicid").value=jQuery("#topicSelect option:selected").val();
   if (document.getElementById("topicid").value=jQuery("#topicSelect option:selected").val()==0){
   	document.getElementById("resourceDiv").style.display="none";
+  	document.getElementById('videoDiv').style.display="none";
+    document.getElementById('textDiv').style.display="none";
+    document.getElementById('linkDiv').style.display="none";
   }
   else{
   	document.getElementById("resourceDiv").style.display="block";
