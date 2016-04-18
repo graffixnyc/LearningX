@@ -51,9 +51,9 @@
   <body>
         <?php include 'menu.php';?>
         
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
+            <div class="container" >
+                <div class="row" >
+                    <div class="col-lg-8 col-lg-offset-2" >
                         <?php if (isset($_SESSION["instructor"]) && $_SESSION["instructor"]==1){   ?>
                         <center>
                            <h3>Add Resources</h2><br>
@@ -95,6 +95,7 @@
 
 <div id="videoDiv" style="display:none;">
     <paper-input class="my-class" type="url" id="videourl"  name="videourl" label="Enter a Video URL" ></paper-input>
+    Include http:// i.e. http://www.site.com
     <paper-input class="my-class"  id="videotext"  name="videotext" label="Enter a Title for this Video" ></paper-input>
     <br>
   <paper-checkbox class="my-check" name="featuredcheck" id="featuredcheck" onclick="toggleFeatured();" >Featured</paper-checkbox>
@@ -123,8 +124,7 @@
       <br>
       <button type="submit" id="SubmitButton" name="submit" style="visibility:hidden;"></button>
 
-      <paper-toast id="toast" text="Registering..."></paper-toast>
-      <paper-toast  visible="false" id="toast2" text="Login Failed, Please Try Again..."></paper-toast>
+     
     </form>
     <br>
  
@@ -173,11 +173,39 @@ function getResource() {
         alert ("Setting this video to be featured will replace the video that is currently featured(if there is one) and that video will be moved to additional resources")
         document.getElementById('featured').value="1";
       }
-      alert (document.getElementById('featured').value);
+      //alert (document.getElementById('featured').value);
     }   
 
     function submitForm(){
-     document.getElementById('SubmitButton').click();
+
+if (document.getElementById('videourl').value!='' && document.getElementById('videotext').value==''){
+		document.querySelector('#toast2').text= "You Entered a Video URL without giving it a title.  Please either give it a title or remove the url and resubmit";
+		document.querySelector('#toast2').show();
+		document.getElementById('videoDiv').style.display="block";
+    	document.getElementById('textDiv').style.display="none";
+    	document.getElementById('linkDiv').style.display="none";
+
+	}
+	else if (document.getElementById('linkurl').value!='' && document.getElementById('linktext').value==''){
+		document.querySelector('#toast2').text= "You Entered a Link URL without giving it a title.  Please either give it a title or remove the url and resubmit";
+		document.querySelector('#toast2').show();
+		document.getElementById('videoDiv').style.display="none";
+    	document.getElementById('textDiv').style.display="none";
+    	document.getElementById('linkDiv').style.display="block";
+
+	}
+	
+
+	else{
+	
+		document.querySelector('#toast').text= "Adding Topic Resource...";
+		document.querySelector('#toast').show();
+		document.getElementById('SubmitButton').click();
+		console.log("Submitted!")
+	}
+
+//end
+     //document.getElementById('SubmitButton').click();
     
     }
     
@@ -197,7 +225,8 @@ function getResource() {
             </div>
         </div>
         <!-- /#page-content-wrapper -->
-
+ <paper-toast id="toast" text="Registering..."></paper-toast>
+      <paper-toast  visible="false" id="toast2" text="Login Failed, Please Try Again..."></paper-toast>
     </div>
     <!-- /#wrapper -->
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>

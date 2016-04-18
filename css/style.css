@@ -36,11 +36,22 @@ html {
     min-width: 300px;
   font-weight: 600;
   letter-spacing: .5px;
-  
-  
-  
-
   }
+  #toast2{
+background: red;
+color: #ffffff;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+   text-align: right;
+}
+#toast{
+
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: right;
+}
 
     .myselect {
 width: 300px;
