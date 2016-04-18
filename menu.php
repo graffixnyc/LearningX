@@ -5,16 +5,15 @@
         <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
             <ul class="nav sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="#">
+                    
                        Learning X
-                    </a>
+                    
                 </li>
                 <?php   if (isset($_SESSION["instructor"])){
                             if ($_SESSION["instructor"]==1){ 
                                 echo '<li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-cog"></i> Instructor Settings</a>
                                             <ul class="dropdown-menu" role="menu">
-                                                <li class="dropdown-header"></li>
                                                 <li><a href="addtopic">Add Topic</a></li>
                                                 <li><a href="addresources">Add Topic Resources</a></li>
                                                 <li><a href="addquestions">Add Topic Questions</a></li>
