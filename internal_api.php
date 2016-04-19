@@ -277,7 +277,66 @@ function getUsername($resettoken) {
 	} 
 }
 
+function markQuestionAnswered($question_id, $user_id, $answered_already, $answered_correct) {
+    $sql = "CALL getUserProgress(:question_id, :user_id, :answered_already, :answered_correct)";
+    try {
+		$dbCon = getConnection();
+        $stmt = $dbCon->prepare($sql);
+        $stmt->bindParam("question_id", $question_id);
+        $stmt->bindParam("user_id", $user_id);
+        $stmt->bindParam("answered_already", $answered_already);
+        $stmt->bindParam("answered_correct", $answered_correct);
+        $stmt->execute();
+        $results = array();
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $results[] = $row;
+        }
+        return $results;
+    }
+    catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+    }
 
+}
+
+function getUserProgress($topic_level, $user_id) {
+    $sql = "CALL getUserProgress(:topic_level, :user_id)";
+    try {
+		$dbCon = getConnection();
+        $stmt = $dbCon->prepare($sql);
+        $stmt->bindParam("topic_level", $topic_level);
+        $stmt->bindParam("user_id", $user_id);
+        $stmt->execute();
+        $results = array();
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $results[] = $row;
+        }
+        return $results;
+    }
+    catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+    }
+}
+
+function updateProgress($inlevel, $user_id, $correct) {
+    $sql = "CALL getUserProgress(:inlevel, :user_id, :correct)";
+    try {
+		$dbCon = getConnection();
+        $stmt = $dbCon->prepare($sql);
+        $stmt->bindParam("inlevel", $inlevel);
+        $stmt->bindParam("user_id", $user_id);
+        $stmt->bindParam("correct", $correct);
+        $stmt->execute();
+        $results = array();
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $results[] = $row;
+        }
+        return $results;
+    }
+    catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+    }
+}
 
 
 
