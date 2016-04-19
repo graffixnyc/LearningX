@@ -51,15 +51,16 @@
 
   <body>
         <?php include 'menu.php';?>
-        <?php include 'header.html';?>
+        
             <div class="container" >
-            
+             
                 <div class="row" >
                     <div class="col-lg-8 col-lg-offset-2" >
+                    <?php include 'header.html';?>
                         <?php if (isset($_SESSION["instructor"]) && $_SESSION["instructor"]==1){   ?>
                         
                         <center>
-                           <h3>Add Resources</h3><br></center>
+                           <h3>Add Resources</h3></center>
                           <paper-button id="my-button2" class="my-button2"  onclick="showTaskDialog()">Instructions </paper-button>
                           <center>
                            
@@ -126,7 +127,7 @@
    
       
       
-      <paper-button id="my-button" raised onclick="submitForm();">Add Resource(s)</paper-button>
+      <paper-button id="my-button" class="my-button" raised onclick="submitForm();">Add Resource(s)</paper-button>
       <br>
       <button type="submit" id="SubmitButton" name="submit" style="visibility:hidden;"></button>
 
@@ -145,6 +146,7 @@ function getTopic() {
   	document.getElementById('videoDiv').style.display="none";
     document.getElementById('textDiv').style.display="none";
     document.getElementById('linkDiv').style.display="none";
+    document.getElementById('resourceSelect').selectedIndex=0;
   }
   else{
   	document.getElementById("resourceDiv").style.display="block";

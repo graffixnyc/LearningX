@@ -20,7 +20,7 @@ if (isset($_POST["topicid"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>LearningX | Your perfect Java teacher</title>
     <link rel="stylesheet" href="css/normalize.css">
-    
+    <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="stylesheet" href="css/normalize.css">
 
     <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
@@ -30,10 +30,12 @@ if (isset($_POST["topicid"])) {
 
   <body>
   <?php include 'menu.php';?>
-  <?php include 'header.html';?>
+  
         <div class="container">
+
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
+                <?php include 'header.html';?>
                 	<h2 class="page-header"><?php if(isset($theTopic)) echo $theTopic ?></h2>
                 	<?php
 	                	//Declare the Array

@@ -84,10 +84,12 @@ if(isset($_POST['username'])) {
   <body>
 
         <?php include 'menu.php';?>
-        <?php include 'header.html';?>
+        
             <div class="container">
+
                 <div class="row">
-                    
+                     <div class="col-lg-8 col-lg-offset-2">
+                     <?php include 'header.html';?>
                         <center>
                        <h2>Forgot Password</h2>
                             <paper-material elevation="3" class="card">
@@ -123,6 +125,7 @@ if(isset($_POST['username'])) {
             
    
                         </center>
+                    </div>
                     </div>
                 </div>
             </div>

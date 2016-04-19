@@ -40,10 +40,13 @@
 
   <body>
         <?php include 'menu.php';?>
-        <?php include 'header.html';?>
+        
             <div class="container">
+
                 <div class="row">
+
                     <div class="col-lg-8 col-lg-offset-2">
+                    <?php include 'header.html';?>
                         <?php if (isset($_SESSION["instructor"]) && $_SESSION["instructor"]==1){   ?>
                         <center>
                            <h3>Create Topic</h2>
@@ -55,7 +58,7 @@
          <?php }?>
     <form is="iron-form" id="form" method="post">
       <paper-input class="my-class"  id="topic"  name="topic" label="Enter a New Topic Name" required></paper-input>
-      <paper-button id="my-button" raised onclick="submitForm();">Add Topic</paper-button>
+      <paper-button id="my-button" class="my-button" raised onclick="submitForm();">Add Topic</paper-button>
       <br>
       <button type="submit" id="SubmitButton" name="submit" style="visibility:hidden;"></button>
       <paper-toast id="toast" text="Registering..."></paper-toast>

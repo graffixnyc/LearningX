@@ -71,10 +71,12 @@
   <body>
 
         <?php include 'menu.php';?>
-        <?php include 'header.html';?>
+        
             <div class="container">
+
                 <div class="row">
-                    
+                    <div class="col-lg-8 col-lg-offset-2">
+                     <?php include 'header.html';?>
                         <center>
                        <h2>Login to Learning X</h2>
                             <paper-material elevation="3" class="card">
@@ -120,6 +122,7 @@
    
                         </center>
                     </div>
+                </div>
                 </div>
             </div>
         </div>

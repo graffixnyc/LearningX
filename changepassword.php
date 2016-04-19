@@ -71,7 +71,7 @@ if (!empty($_POST)){
     <title>LearningX | Your perfect Java teacher</title>
     
     
-    <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+     <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
         <link rel="import" href="bower_components/paper-submit/paper-submit.html">
         <link rel="import" href="bower_components/paper-input/paper-textarea.html">
         <link rel="import" href="bower_components/iron-form/iron-form.html">
@@ -91,6 +91,7 @@ if (!empty($_POST)){
     <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
     <script src="js/script.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="js/index.js"></script>
 
     
     
@@ -98,65 +99,58 @@ if (!empty($_POST)){
   </head>
 
   <body>
-
         <?php include 'menu.php';?>
-        <?php include 'header.html';?>
-            <div class="container">
-                <div class="row">
-                    
-                        <center>
-                       <h2>Change Password</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <?php include 'header.html';?>
+                    <center>
+                        <h2>Change Password</h2></center>
                         <paper-material elevation="3" class="card">
-        
-        <center>
-                    <?php
-                    if (isset($_SESSION["pwupdate"])){
-                        if ($_SESSION["pwupdate"]==0){
-                            
-                            echo'<h4 style="color:red">Something went wrong. Wrong current password perhaps? </h4>';
-                            
-                        }
-                        else{
-                            echo'<h4 style="color:red">Password Changed.  Logging out in 2 seconds</h4>';
-                            echo '<meta http-equiv="refresh" content="2;URL=http://learningx.abstractlogic.nyc/logout.php">';
-                        }
+                            <center>
                         
-                        unset($_SESSION["pwupdate"]);
-                    }
-                        ?>
-        
-        <form is="iron-form" id="form" method="post">
-        <?php if ($useremail !=''){ ?>
-            <paper-input readonly class="my-class"  id="email" name="username" type="email" value="<?php echo $useremail;?>"  required></paper-input>
-        
-        <?php }
-              else{?>
-                  <paper-input readonly class="my-class" id="email" type="email" name="username"  value="<?php echo $_SESSION["uname"];?>"required></paper-input>
-                    <paper-input class="my-class"  type="password" id="currentpw" name="currentpw" label="Current Password" required></paper-input>
-        <?php  } ?>
-        <paper-input class="my-class" id="password1"  type="password" name="password" label="Password" required></paper-input>
-        <paper-input class="my-class" id="password2"  type="password"  label="Re-enter Password" required></paper-input>
-        
-     
-      <button type="submit" id="SubmitButton" name="submit" style="visibility:hidden;"></button>
-        <paper-button class="my-button" raised onclick="submitForm();">Change Password</paper-button>
-    <paper-toast id="toast" text="Registering..."></paper-toast>
-    <paper-toast  visible="false" id="toast2" text="Login Failed, Please Try Again..."></paper-toast>
-                
-
-
-    </form>
-        
-    <script>function submitForm(){
+                            <?php
+                            if (isset($_SESSION["pwupdate"])){
+                                if ($_SESSION["pwupdate"]==0){
+                                    
+                                    echo'<h4 style="color:red">Something went wrong. Wrong current password perhaps? </h4>';
+                                    
+                                }
+                                else{
+                                    echo'<h4 style="color:red">Password Changed.  Logging out in 2 seconds</h4>';
+                                    echo '<meta http-equiv="refresh" content="2;URL=http://learningx.abstractlogic.nyc/logout.php">';
+                                }
+                                
+                                unset($_SESSION["pwupdate"]);
+                            }
+                                ?>
+                    
+                            <form is="iron-form" id="form" method="post">
+                                <?php if ($useremail !=''){ ?>
+                                    <paper-input readonly class="my-class"  id="email" name="username" type="email" value="<?php echo $useremail;?>"  required></paper-input>
+                                <?php }
+                                else{?>
+                                    <paper-input readonly class="my-class" id="email" type="email" name="username"  value="<?php echo $_SESSION["uname"];?>"required></paper-input>
+                                    <paper-input class="my-class"  type="password" id="currentpw" name="currentpw" label="Current Password" required></paper-input>
+                                <?php  } ?>
+                                <paper-input class="my-class" id="password1"  type="password" name="password" label="Password" required></paper-input>
+                                <paper-input class="my-class" id="password2"  type="password"  label="Re-enter Password" required></paper-input>
+                                <button type="submit" id="SubmitButton" name="submit" style="visibility:hidden;"></button>
+                                <paper-button class="my-button" raised onclick="submitForm();">Change Password</paper-button>
+                                <paper-toast id="toast" text="Registering..."></paper-toast>
+                                <paper-toast  visible="false" id="toast2" text="Login Failed, Please Try Again..."></paper-toast>
+                            </form>
+                            </center>
+                            <br />
+                    </paper-material>
+                </div>
+            </div>
+        </div>
+<script>function submitForm(){
         <?php if ($resetflag==0){
             echo 'if (document.getElementById("currentpw").value==""){
-        document.querySelector("#toast2").text= "Current Password Cannot be blank! Please Re-enter";
-            document.querySelector("#toast2").show();}';
-            ?>
-        
-        
-        <?php 
-        
+            document.querySelector("#toast2").text= "Current Password Cannot be blank! Please Re-enter";
+            document.querySelector("#toast2").show();}'; 
         }
         ?>
      
@@ -186,28 +180,6 @@ if (!empty($_POST)){
     }
     }
        </script> 
-        
-        
-
-     </center>
-        <br />
-        
-    </paper-material>
-            
-            
-   
-                        </center>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /#page-content-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
-
     
     
     

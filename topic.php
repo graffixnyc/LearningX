@@ -15,16 +15,18 @@
     <link rel="stylesheet" href="css/normalize.css">
 
     <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-
+<link rel="import" href="bower_components/paper-material/paper-material.html">
         <link rel="stylesheet" href="css/style.css">
   </head>
 
   <body>
   <?php include 'menu.php';?>
-  <?php include 'header.html';?>
+ 
         <div class="container">
+
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 center">
+                <?php include 'header.html';?>
                   <h2 class="page-header text-center"><?php if(isset($theTopic)) echo $theTopic ?></h2>
                   <?php
                     if (!empty($_GET['id'])){

@@ -52,10 +52,12 @@ else{?>
   <body>
 
         <?php include 'menu.php';?>
-        <?php include 'header.html';?>
+        
             <div class="container">
+
                 <div class="row">
-                    
+                    <div class="col-lg-8 col-lg-offset-2 text-center">
+                <?php include 'header.html';?>
                         <center>
                         <h2>Register for Learning X</h2>
                             <paper-material elevation="3" class="card">
@@ -78,7 +80,7 @@ else{?>
       <paper-input class="my-class"  id="email" type="email" name="username" label="Email Address" required></paper-input>
       <paper-input class="my-class" id="password1"  type="password" name="password" label="Password" required></paper-input>
       <paper-input class="my-class" id="password2"  type="password"  label="Re-enter Password" required></paper-input>
-      <paper-button id="my-button" raised onclick="submitForm();">Register</paper-button>
+      <paper-button id="my-button" class="my-button" raised onclick="submitForm();">Register</paper-button>
       <br>
       <button type="submit" id="SubmitButton" name="submit" style="visibility:hidden;"></button>
       <paper-toast id="toast" text="Registering..."></paper-toast>
@@ -133,6 +135,7 @@ else{?>
    
                         </center>
                     </div>
+                </div>
                 </div>
             </div>
         </div>
