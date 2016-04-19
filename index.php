@@ -35,8 +35,8 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                      <?php include 'header.html';?>
+                     <br>
                         <center>
-                            <h1 class="page-header">Learning X</h1> 
                             <div class="video-container">
                                 <iframe src="https://www.youtube.com/embed/ceiZOFHh1hU" frameborder="0" width="560" height="315"></iframe>
                             </div> 
