@@ -139,6 +139,13 @@ adjust,img.test123,table{
   position: relative;
   width: 100%;
 }
+hr{
+  clear: both;
+  color: #28547a;
+  background-color: #28547a;
+  height: 5px;
+  border-width: 0;
+}
 .sidebar-nav li:before {
   background-color: #ffffff;
   content: '';

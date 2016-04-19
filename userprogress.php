@@ -16,7 +16,9 @@
     <link rel="stylesheet" href="css/normalize.css">
 
     <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-
+<script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+<link rel="import" href="bower_components/paper-material/paper-material.html">
+<link rel="import" href="bower_components/paper-styles/paper-styles.html">
         <link rel="stylesheet" href="css/style.css">
 
   </head>
@@ -27,6 +29,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
+                        <?php include 'header.html';?>
+                        <br>
                         <center>
 
 <?php   

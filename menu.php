@@ -6,6 +6,7 @@
             <ul class="nav sidebar-nav">
                 <li style="background: white;background-size: contain;background-image: url(/imgs/4.png);" class="sidebar-brand">
                 </li>
+                <hr />
                 <?php   if (isset($_SESSION["instructor"])){
                             if ($_SESSION["instructor"]==1){ 
                                 echo '<li class="dropdown">
