@@ -15,12 +15,11 @@
 <!DOCTYPE html>
 <html >
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>LearningX | Your perfect Java teacher</title>
-      <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-    
-    <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>LearningX | Your perfect Java teacher</title>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+		<script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
         <link rel="import" href="bower_components/paper-dialog/paper-dialog.html">
         <link rel="import" href="bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
         <link rel="import" href="bower_components/paper-input/paper-textarea.html">
