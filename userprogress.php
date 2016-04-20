@@ -40,6 +40,24 @@
         }  
         else if ($_SESSION["instructor"]==0){
             echo '<h1 class="page-header">'. $_SESSION["fname"] . '\'s Progress</h1>';
+            $uprogress=array();
+            // _SESSION can be found in login.php
+            $uprogress=getUserProgress($topic_level=NULL, $user_id=$_SESSION["uid"]);
+            //echo '<p> The level is ' .$uprogress[0]["level"]. '</p>';
+            //echo '<p> The total questions is ' .$uprogress[0]["totalquestions"]. '</p>';
+            //echo '<p> The total answered is ' .$uprogress[0]["totalanswered"]. '</p>';
+            //echo '<p> The total correct is ' .$uprogress[0]["totalcorrect"]. '</p>';
+            //echo '<p> The percentage correct is ' .$uprogress[0]["percentageCorrect"]. '</p>';
+            echo '<table border=1px><tr><td>Level</td><td>Total Number of Questions</td><td>Total Questions Answered</td><td>Total Question Correct</td><td>% Answered Correctly</td></tr>';
+            foreach($uprogress as $item) {
+                echo '<tr><td>'.$item["level"].'</td>';
+                echo '<td>'.$item["totalquestions"].'</td>';
+                echo '<td>'.$item["totalanswered"].'</td>';
+                echo '<td>'.$item["totalcorrect"].'</td>';
+                echo '<td>'.$item["percentageCorrect"].'</td></tr>';
+
+            }
+            echo '</table>';
         }
     }
     else{

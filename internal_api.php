@@ -308,6 +308,8 @@ function getUserProgress($topic_level, $user_id) {
         $stmt->bindParam("user_id", $user_id);
         $stmt->execute();
         $results = array();
+        //$resultset = $stmt->fetchALL(PDO::FETCH_ASSOC);
+        //echo 'All are '.$resultset[0]["totalquestions"].' here.';
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $results[] = $row;
         }
