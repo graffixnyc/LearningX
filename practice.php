@@ -60,24 +60,32 @@ if (isset($_POST["topicid"])) {
 						// print_r($answer);
 						// echo "</pre>";
                 	?>
-                	<p><?php echo count($practice); ?> qustions in total</p>
+                	
+                    <div id="questions-container">
                 	<?php
+                        $index = 0;                        
                 		foreach ($practice as $item) {
-                			;
+                			echo "<div class='question'>";
+                            echo '<p>Qustion ' . ++$index . ' of ' . count($practice) . '</p>';
                 			echo "<p>" . $item['question'] . "</p>";
-                			echo "<form><div class='text-left center-block' style='width:50%'>";
+                			echo "<div class='text-left center-block' style='width:50%'>";
                 			$answers = getAnswers($item['questionID']);
                 			foreach ($answers as $ans) {
                 				echo "<div class='radio'><label><input type='radio'>" . $ans['answer'] . "</label></div>";
                 			}
                 			
                 			echo "</div>";
-                			echo '<input class="btn btn-primary" type="submit" value="Select Answer">';
+                			echo '<input class="btn btn-primary submit" type="submit" value="Select Answer">';
                 			echo "&nbsp;&nbsp;&nbsp;";
-                			echo '<input class="btn btn-default" type="button" value="Skip Qustion">';
-                			echo "</form>";
+                			echo '<input class="btn btn-default skip" type="button" value="Skip Qustion">';
+                			echo "</div>";
                 		}
                 	?>
+                    </div>
+
+                    <div id="congraduation" style="display: none">
+                        <h4>Awesome! You've already answered all the quesitons~</h4>
+                    </div>
                 </div>           
             </div>            
         </div>      
@@ -89,5 +97,30 @@ if (isset($_POST["topicid"])) {
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
     <script src="js/index.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".question").first().addClass("active");
+
+            // When click "skip" button, let next question show up
+            $(".question").find(".skip").click(function() {
+                console.log("skip");                
+                var currentActiveQuestion = $(".question.active");
+                var nextQuestion = currentActiveQuestion.next();
+                currentActiveQuestion.fadeOut("slow", function () {
+                    currentActiveQuestion.removeClass("active");                                        
+                    if (nextQuestion.length) {
+                        nextQuestion.addClass("active");
+                    } else {
+                        // This is already the last question
+                        $("#congraduation").show();
+                    }
+                });
+                
+
+            });
+
+        });
+
+    </script>
   </body>
 </html>

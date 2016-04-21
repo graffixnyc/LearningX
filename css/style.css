@@ -440,3 +440,19 @@ body a {
 body a:hover {
   color: #fff;
 }
+
+/* Question page */
+#questions-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.question {
+  display: none;
+  width: 100%;
+  height: 360px;
+}
+.question.active {
+  display: block;
+}
+
