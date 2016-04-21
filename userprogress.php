@@ -40,7 +40,8 @@
         }  
         else if ($_SESSION["instructor"]==0){
             echo '<h1 class="page-header">'. $_SESSION["fname"] . '\'s Progress</h1>';
-            echo '<table border=1px><tr><td>Topic Name</td><td>Total Number of Questions</td><td>Total Questions Answered</td><td>Total Question Correct</td><td>% Answered Correctly</td></tr>';
+            echo '<paper-material elevation="3" class="card">';
+            echo '<table border="1px" BORDERCOLOR="#28547a"><tr><td align="center">Topic Name</td><td align="center">Total Number of Questions</td><td align="center">Total Questions Answered</td><td align="center">Total Question Correct</td><td align="center">% Answered Correctly</td></tr>';
 
             $topics=array();
             $topics=getTopics();
@@ -51,18 +52,18 @@
                 $uprogress=getUserProgress($topicID, $_SESSION["uid"]);
                 if (empty($uprogress)) {
                         echo '<tr><td>'.$topicName.'</td>';
-                        echo '<td>0</td>';
-                        echo '<td>0</td>';
-                        echo '<td>0</td>';
-                        echo '<td>0</td>';
+                        echo '<td align="center">0</td>';
+                        echo '<td align="center">0</td>';
+                        echo '<td align="center">0</td>';
+                        echo '<td align="center">0%</td>';
                 }
                 else {
                     foreach($uprogress as $item) {
                         echo '<tr><td>'.$topicName.'</td>';
-                        echo '<td>'.$item["totalquestions"].'</td>';
-                        echo '<td>'.$item["totalanswered"].'</td>';
-                        echo '<td>'.$item["totalcorrect"].'</td>';
-                        echo '<td>'.$item["percentageCorrect"].'</td></tr>';
+                        echo '<td align="center">'.$item["totalquestions"].'</td>';
+                        echo '<td align="center">'.$item["totalanswered"].'</td>';
+                        echo '<td align="center">'.$item["totalcorrect"].'</td>';
+                        echo '<td align="center">'.$item["percentageCorrect"].'%</td></tr>';
                     }
                 }
 
@@ -75,7 +76,7 @@
         echo '<li><a href="login"><i class="fa fa-fw fa-sign-in"></i> Login</a></li>';
     }
 ?> 
-
+</paper-material>
                         </center>
                     </div>
                 </div>
