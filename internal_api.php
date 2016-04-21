@@ -90,6 +90,29 @@ function addTopic($topic) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	} 
 }
+function addResource($topicid,$resourcetype, $resource, $resourcedisplay, $featured) {
+	$sql = "CALL createResource(:topicid,:resourcetype, :resource, :resourcedisplay, :featured)";
+
+	try {
+		$dbCon = getConnection();
+		$stmt = $dbCon->prepare($sql);
+		$stmt->bindParam("topicid", $topicid);
+		$stmt->bindParam("resourcetype", $resourcetype);
+		$stmt->bindParam("resource", $resource);
+		$stmt->bindParam("resourcedisplay", $resourcedisplay);
+		$stmt->bindParam("featured", $featured);
+
+		$stmt->execute();
+		$results = array();
+		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+			$results[] = $row;
+		}
+		return $results;
+	}
+	catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+	} 
+}
 function getAnswers($questionid) {
 	$sql = "CALL getAnswers(:questionid)";
 	try {

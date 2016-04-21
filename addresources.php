@@ -4,9 +4,26 @@
 
     session_start();
     if (!empty($_POST)){
-      print_r($_POST);
-    //$resource=array(); 
-    //$topic=addTopic($_POST["topic"]);
+      $resource=array(); 
+      if (isset($_POST["text"]) && $_POST["text"]<>'') {
+   
+        $text=$_POST["text"];
+        $resource= addResource($_POST["topicid"],"Text", $text, null, 0);
+      }
+      if ((isset($_POST["videourl"]) && $_POST["videourl"]<>'') && (isset($_POST["videotext"]) && $_POST["videotext"]<>'')) {
+         
+          if ($_POST["featured"]==1){
+            
+            $resource= addResource($_POST["topicid"],"Video", $_POST["videourl"], $_POST["videotext"], 1);
+          }
+          else{
+             $resource= addResource($_POST["topicid"],"Video", $_POST["videourl"], $_POST["videotext"], 0);
+          }
+      }
+      if ((isset($_POST["linkurl"]) && $_POST["linkurl"]<>'') && (isset($_POST["linktext"]) && $_POST["linktext"]<>'')) {
+        
+        $resource= addResource($_POST["topicid"],"Link", $_POST["linkurl"], $_POST["linktext"], 0);
+      }
     
 }
 
@@ -69,8 +86,8 @@
  
   
   <center>
-    <?php if (isset($topic[0]["created"]) && $topic[0]["created"]=='Success'){?>
-         <h4 style="color:red">Resource Created</h4>
+    <?php if (isset($resource[0]["created"]) && $resource[0]["created"]=='Success'){?>
+         <h4 style="color:red">Resource(s) Created</h4>
          <?php }?>
             <form is="iron-form" id="form" method="post">
     
@@ -85,7 +102,8 @@
                 }
                 ?>
 </select>
-  <paper-input class="my-class"  id="topicid"  name="topicid" style="display:none;"></paper-input>
+  <paper-input class="my-class"  id="topicid"  name="topicid"  style="display:none;" ></paper-input>
+  <paper-input class="my-class"  id="resourcetype"  name="resourcetype"  style="display:none;" ></paper-input>
 <br><br>
 <div id="resourceDiv" style="display: none;">
 <select class="myselect" id="resourceSelect" onchange="getResource()">
@@ -100,7 +118,7 @@
 <br>
 
 <div id="videoDiv" style="display:none;">
-    <paper-input class="my-class" type="url" id="videourl"  name="videourl" label="Enter a Video URL" ></paper-input>
+    <paper-input class="my-class" type="url" id="videourl" name="videourl" label="Enter a Video URL" ></paper-input>
     Include http:// i.e. http://www.site.com
     <paper-input class="my-class"  id="videotext"  name="videotext" label="Enter a Title for this Video" ></paper-input>
     <br>
@@ -112,13 +130,16 @@
 
 
 <div id="textDiv" style="display:none;">
-    <paper-textarea id="text" name="text" label="autoresizing textarea input"></paper-textarea>
+    <paper-textarea class="my-area-class" id="text" name="text" label="Resource"></paper-textarea>
+    You can enter HTML Tags into this field like &ltB&gtBOLD TEXT HERE&lt/B&gt <br>
+    To enter line breaks please use the &ltBR&gt HTML tag. i.e. This is on one line  &ltBR&gt this is on another
 <br>
 </div>
 
 
 <div id="linkDiv" style="display:none;">
     <paper-input class="my-class" type="url" id="linkurl"  name="linkurl" label="Enter a URL" ></paper-input>
+    Include http:// i.e. http://www.site.com
     <paper-input class="my-class"  id="linktext"  name="linktext" label="Enter a Title for this Link" ></paper-input>
    
 <br>
@@ -138,21 +159,22 @@
 
     <script>
 function getTopic() {
-  //alert(jQuery("#topicSelect option:selected").val());
+  
   document.getElementById("topicid").value=jQuery("#topicSelect option:selected").val();
-  if (document.getElementById("topicid").value=jQuery("#topicSelect option:selected").val()==0){
-  	document.getElementById("resourceDiv").style.display="none";
-  	document.getElementById('videoDiv').style.display="none";
+  if (jQuery("#topicSelect option:selected").val()==0){
+    document.getElementById("resourceDiv").style.display="none";
+    document.getElementById('videoDiv').style.display="none";
     document.getElementById('textDiv').style.display="none";
     document.getElementById('linkDiv').style.display="none";
     document.getElementById('resourceSelect').selectedIndex=0;
   }
   else{
-  	document.getElementById("resourceDiv").style.display="block";
+    document.getElementById("resourceDiv").style.display="block";
   }
 }
    
 function getResource() {
+  document.getElementById("resourcetype").value=jQuery("#resourceSelect option:selected").val();
   if (jQuery("#resourceSelect option:selected").val()=='Video'){
     document.getElementById('videoDiv').style.display="block";
     document.getElementById('textDiv').style.display="none";
@@ -223,6 +245,16 @@ if (document.getElementById('videourl').value!='' && document.getElementById('vi
      //document.getElementById('SubmitButton').click();
     
     }
+    function disableType(){
+      alert (document.getElementById('videourl').value);
+  if (document.getElementById('videotext').value!='' || document.getElementById('videourl').value !='' 
+    || document.getElementById('text').value !='' ||document.getElementById('linkurl').value !='' ||document.getElementById('linktext').value!=''){
+     document.getElementById('resourceSelect').disabled=true;
+  }
+  else{
+    document.getElementById('resourceSelect').disabled=false;
+  }
+}
     function showTaskDialog(){
 			document.getElementById('instructions').toggle();
 		}

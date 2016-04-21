@@ -42,7 +42,7 @@
                       foreach($resources as $item) {                       
                         if ($item['featured'] == 1)
                           $featuredResource = $item['resource'];
-                        else if ($item['resourceType'] == "text")
+                        else if ($item['resourceType'] == "Text")
                           $descriptionText = $item['resource'];
                         else
                           $addtionalResources[] = $item;
