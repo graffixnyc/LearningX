@@ -39,7 +39,7 @@
            echo '<h1 class="page-header"> Users\' Progress</h1>' ;
         }  
         else if ($_SESSION["instructor"]==0){
-            echo '<h1 class="page-header">'. $_SESSION["fname"] . '\'s Progress</h1>';
+            echo '<h4 class="page-header">'. $_SESSION["fname"] . '\'s Progress</h4>';
             echo '<paper-material elevation="3" class="card">';
             echo '<table border="1px" BORDERCOLOR="#28547a"><tr><td align="center">Topic Name</td><td align="center">Total Number of Questions</td><td align="center">Total Questions Answered</td><td align="center">Total Question Correct</td><td align="center">% Answered Correctly</td></tr>';
 
