@@ -132,7 +132,8 @@
 <div id="textDiv" style="display:none;">
     <paper-textarea class="my-area-class" id="text" name="text" label="Resource"></paper-textarea>
     You can enter HTML Tags into this field like &ltB&gtBOLD TEXT HERE&lt/B&gt <br>
-    To enter line breaks please use the &ltBR&gt HTML tag. i.e. This is on one line  &ltBR&gt this is on another
+    To enter line breaks please use the &ltBR&gt HTML tag. i.e. This is on one line  &ltBR&gt this is on another<br>
+    <font style="color:red"> IF YOU SUBMIT A TEXT RESOURCE IT WILL OVERWRITE THE EXISTING TEXT DISPLAYED ON THE TOPIC PAGE.  THERE CAN BE ONLY ONE TEXT RESOURCE PER TOPIC</font>
 <br>
 </div>
 
