@@ -1,8 +1,9 @@
 table {
     border-collapse: collapse;
     width: 100%;
+    border-color: #28547a;
+    border: 3px;
 }
-
 th, td {
     padding: 10px;
     text-align: center;
@@ -11,3 +12,4 @@ th, td {
 tr:hover {
     background-color:#dae4ed;
 }
+
