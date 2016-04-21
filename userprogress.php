@@ -11,15 +11,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>LearningX | Your perfect Java teacher</title>
-    
-    
     <link rel="stylesheet" href="css/normalize.css">
 
     <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-<script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-<link rel="import" href="bower_components/paper-material/paper-material.html">
-<link rel="import" href="bower_components/paper-styles/paper-styles.html">
-        <link rel="stylesheet" href="css/style.css">
+    <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="bower_components/paper-material/paper-material.html">
+    <link rel="import" href="bower_components/paper-styles/paper-styles.html">
+    <link rel="import" href="css/my_custom_styles.html">
+    <link rel="stylesheet" href="css/style.css">
 
   </head>
 
@@ -28,12 +27,14 @@
         
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
+                    <div class="col-lg-8 col-lg-offset-2 center">
                         <?php include 'header.html';?>
                         <br>
                         <center>
 
 <?php   
+    echo '<link rel="stylesheet" href="css/components_style.css">';
+
     if (isset($_SESSION["instructor"])){
         if ($_SESSION["instructor"]==1){
            echo '<h1 class="page-header"> Users\' Progress</h1>' ;
@@ -41,7 +42,8 @@
         else if ($_SESSION["instructor"]==0){
             echo '<h4 class="page-header">'. $_SESSION["fname"] . '\'s Progress</h4>';
             echo '<paper-material elevation="3" class="card">';
-            echo '<table border="1px" BORDERCOLOR="#28547a"><tr><td align="center">Topic Name</td><td align="center">Total Number of Questions</td><td align="center">Total Questions Answered</td><td align="center">Total Question Correct</td><td align="center">% Answered Correctly</td></tr>';
+            echo '<div class="table-responsive" style="border:0">';
+            echo '<table BORDERCOLOR="#28547a"><tr><th>Topic Name</th><th>Total Number of Questions</th><th align="center">Total Questions Answered</th><th align="center">Total Question Correct</th><th align="center">% Answered Correctly</th></tr>';
 
             $topics=array();
             $topics=getTopics();
@@ -52,23 +54,23 @@
                 $uprogress=getUserProgress($topicID, $_SESSION["uid"]);
                 if (empty($uprogress)) {
                         echo '<tr><td>'.$topicName.'</td>';
-                        echo '<td align="center">0</td>';
-                        echo '<td align="center">0</td>';
-                        echo '<td align="center">0</td>';
-                        echo '<td align="center">0%</td>';
+                        echo '<td>0</td>';
+                        echo '<td>0</td>';
+                        echo '<td>0</td>';
+                        echo '<td>0%</td>';
                 }
                 else {
                     foreach($uprogress as $item) {
                         echo '<tr><td>'.$topicName.'</td>';
-                        echo '<td align="center">'.$item["totalquestions"].'</td>';
-                        echo '<td align="center">'.$item["totalanswered"].'</td>';
-                        echo '<td align="center">'.$item["totalcorrect"].'</td>';
-                        echo '<td align="center">'.$item["percentageCorrect"].'%</td></tr>';
+                        echo '<td>'.$item["totalquestions"].'</td>';
+                        echo '<td>'.$item["totalanswered"].'</td>';
+                        echo '<td>'.$item["totalcorrect"].'</td>';
+                        echo '<td>'.$item["percentageCorrect"].'%</td></tr>';
                     }
                 }
 
             }
-            echo '</table>';
+            echo '</table></div></paper-material><br>';
         }
     }
     else{
