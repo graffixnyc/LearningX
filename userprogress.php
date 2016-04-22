@@ -42,7 +42,7 @@
         else if ($_SESSION["instructor"]==0){
             echo '<h4 class="page-header">'. $_SESSION["fname"] . '\'s Progress</h4>';
             echo '<paper-material elevation="3" class="card">';
-            echo '<table border="1px" BORDERCOLOR="#28547a"><tr><td align="center">Topic Name</td><td align="center">Total Number of Questions</td><td align="center">Total Questions Answered</td><td align="center">Total Question Correct</td><td align="center">% Answered Correctly</td></tr>';       
+            echo ' <div class="adjust"><div class="table-responsive" style="border: 0"><table width="100%" border="1px" BORDERCOLOR="#28547a"><tr><td align="center">Topic Name</td><td align="center">Total Number of Questions</td><td align="center">Total Questions Answered</td><td align="center">Total Question Correct</td><td align="center">% Correct</td></tr>';       
             $topics=array();
             $topics=getTopics();
             foreach($topics as $t) {
@@ -68,7 +68,7 @@
                 }
 
             }
-            echo '</table></paper-material><br>';
+            echo '</table></div></div></paper-material><br>';
         }
     }
     else{
