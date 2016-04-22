@@ -2,6 +2,11 @@
 include_once("analyticstracking.php");
 include 'internal_api.php';
 session_start();
+//If the user has not logged in, redirect him to login first
+if (!isset($_SESSION['uid'])) {
+    $_SESSION['intended'] = "topic?id=" . $_POST['topicid'];
+    header("Location: login");
+}
 
 //Find the topic name of current topic
 if (isset($_POST["topicid"])) {
@@ -39,44 +44,28 @@ if (isset($_POST["topicid"])) {
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                 <?php include 'header.html';?>
-                	<h2 class="page-header"><?php if(isset($theTopic)) echo $theTopic ?></h2>
-                	<?php
-	                	//Declare the Array
-						$practice=array(); 
-						//Set the Array to call the function (this function is in internal_api.php)
-						$practice=getPractice($_POST["topicid"]);
-
-						//Loop through the results and display them
-						// echo "<pre>";
-						// print_r($practice);
-						// echo "</pre>";
-						// foreach($practice as $item) {
-						//     echo $item['question'] . '<br>';
-						// }
-
-						// $answer = getAnswers(1);
-
-						// //Loop through the results and display them
-						// echo "<pre>";
-						// print_r($answer);
-						// echo "</pre>";
-                	?>
-                	
+                	<h2 class="page-header"><?php if(isset($theTopic)) echo $theTopic ?></h2>                	
                     <div id="questions-container">
                 	<?php
+                        //Declare the Array
+                        $practice=array(); 
+                        //Set the Array to call the function (this function is in internal_api.php)
+                        $practice=getPractice($_POST["topicid"]);
+
                         $index = 0;                        
                 		foreach ($practice as $item) {
-                			echo "<div class='question'>";
-                            echo '<p>Qustion ' . ++$index . ' of ' . count($practice) . '</p>';
+                            $index++;
+                			echo "<div class='question' data-id=" . $index . ">";
+                            echo '<p>Qustion ' . $index . ' of ' . count($practice) . '</p>';
                 			echo "<p>" . $item['question'] . "</p>";
                 			echo "<div class='text-left center-block' style='width:50%'>";
                 			$answers = getAnswers($item['questionID']);
                 			foreach ($answers as $ans) {
-                				echo "<div class='radio'><label><input type='radio'>" . $ans['answer'] . "</label></div>";
+                				echo "<div class='checkbox'><label><input type='checkbox' value=" . $ans['correct'] . ">  " . $ans['answer'] . "</label></div>";
                 			}
                 			
                 			echo "</div>";
-                			echo '<input class="btn btn-primary submit" type="submit" value="Select Answer">';
+                			echo '<input class="btn btn-primary submit" type="button" value="Select Answer">';
                 			echo "&nbsp;&nbsp;&nbsp;";
                 			echo '<input class="btn btn-default skip" type="button" value="Skip Qustion">';
                 			echo "</div>";
@@ -118,6 +107,65 @@ if (isset($_POST["topicid"])) {
                 });
                 
 
+            });
+
+            // When click "submit" button, use AJAX to submit
+            $(".question").find(".submit").click(function() {
+                console.log("submit");
+                var currentActiveQuestion = $(".question.active");
+                // Check if every option is selected or not correlty
+                // If correct, let the option be green
+                // If wrong, let the option be red
+                var correct = 1;
+                currentActiveQuestion.find("input:checkbox").each(function(index) {
+                    console.log(index);
+                    // show all the right options
+                    if (this.checked && this.value == 1) {
+                        $(this).parent().addClass("text-success");
+                    }
+                    // if the option is selected but wrong, make it red
+                    if (this.checked && this.value == 0) {
+                        $(this).parent().addClass("text-danger");
+                        correct = 0;
+                    }
+                    // if the option is right but not selcted, make it yellow
+                    if (!this.checked && this.value == 1) {                  
+                        $(this).parent().addClass("text-info");      
+                        correct = 0;
+                    } 
+                });
+
+                $.ajax({
+                    url: "makeQustionAnswered",
+                    method: "POST",
+                    data: {
+                        quesitonid: currentActiveQuestion.data("id"),
+                        userid: <?php echo $_SESSION["uid"] ?>,
+                        answeredAlready: 0,
+                        answeredCorrect: correct
+                    }
+                }).always(function(data) {
+                    console.log(data);
+                    setTimeout(function(){
+                        // Move to next question
+                        var nextQuestion = currentActiveQuestion.next();
+                        currentActiveQuestion.fadeOut("slow", function () {
+                            currentActiveQuestion.removeClass("active");                                        
+                            if (nextQuestion.length) {
+                                nextQuestion.addClass("active");
+                            } else {
+                                // This is already the last question
+                                $("#congraduation").show();
+                            }
+                        });
+                    }, 3000);                    
+                });
+
+
+
+
+
+                var nextQuestion = currentActiveQuestion.next();
             });
 
         });

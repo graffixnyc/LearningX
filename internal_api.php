@@ -345,7 +345,7 @@ function getUsername($resettoken) {
 }
 
 function markQuestionAnswered($question_id, $user_id, $answered_already, $answered_correct) {
-    $sql = "CALL getUserProgress(:question_id, :user_id, :answered_already, :answered_correct)";
+    $sql = "CALL markQuestionAnswered(:question_id, :user_id, :answered_already, :answered_correct)";
     try {
 		$dbCon = getConnection();
         $stmt = $dbCon->prepare($sql);
