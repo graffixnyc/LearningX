@@ -136,12 +136,12 @@ if (isset($_POST["topicid"])) {
                 });
 
                 $.ajax({
-                    url: "makeQustionAnswered",
+                    url: "markQustionAnswered",
                     method: "POST",
                     data: {
                         quesitonid: currentActiveQuestion.data("id"),
                         userid: <?php echo $_SESSION["uid"] ?>,
-                        answeredAlready: 0,
+                        answeredAlready: 1,
                         answeredCorrect: correct
                     }
                 }).always(function(data) {
@@ -161,11 +161,6 @@ if (isset($_POST["topicid"])) {
                     }, 3000);                    
                 });
 
-
-
-
-
-                var nextQuestion = currentActiveQuestion.next();
             });
 
         });
