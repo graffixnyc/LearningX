@@ -26,7 +26,14 @@
       }
     
 }
-
+if (!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"]!=1 ){
+   $_SESSION["intended"]="addresources";
+        header( 'Location: login') ;
+}
+else if (!isset($_SESSION["instructor"]) && $_SESSION["instructor"]==0){
+  echo'YOU DO NOT HAVE ACCESS';
+}
+else{
  
 ?>
 <!DOCTYPE html>
@@ -302,7 +309,7 @@ if (document.getElementById('videourl').value!='' && document.getElementById('vi
 
         <script src="js/index.js"></script>
 
-
+<?php }?>
     
     
   </body>

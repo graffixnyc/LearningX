@@ -8,7 +8,14 @@
     $topic=addTopic($_POST["topic"]);
     
 }
-
+if (!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"]!=1 ){
+   $_SESSION["intended"]="addtopic";
+        header( 'Location: login') ;
+}
+else if (!isset($_SESSION["instructor"]) && $_SESSION["instructor"]==0){
+  echo'YOU DO NOT HAVE ACCESS';
+}
+else{
  
 ?>
 <!DOCTYPE html>
@@ -107,7 +114,7 @@
         <script src="js/index.js"></script>
 
     
-    
+ <?php }?>   
     
   </body>
 </html>

@@ -14,6 +14,14 @@
     
 
 }
+if (!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"]!=1 ){
+   $_SESSION["intended"]="addquestion";
+        header( 'Location: login') ;
+}
+else if (!isset($_SESSION["instructor"]) && $_SESSION["instructor"]==0){
+  echo'YOU DO NOT HAVE ACCESS';
+}
+else{
 
  
 ?>
@@ -315,7 +323,7 @@ else{
 
         <script src="js/index.js"></script>
 
-
+<?php }?>
     
     
   </body>

@@ -34,46 +34,47 @@
 
 <?php
    
-
-    if (isset($_SESSION["instructor"])){
-        if ($_SESSION["instructor"]==1){
-           echo '<h1 class="page-header"> Users\' Progress</h1>' ;
-        }  
-        else if ($_SESSION["instructor"]==0){
-            echo '<h4 class="page-header">'. $_SESSION["fname"] . '\'s Progress</h4>';
-            echo '<paper-material elevation="3" class="card">';
-            echo ' <div class="adjust"><div class="table-responsive" style="border: 0"><table width="100%" border="1px" BORDERCOLOR="#28547a"><tr><td align="center">Topic Name</td><td align="center">Total # of Questions</td><td align="center">Total Answered</td><td align="center">Total Correct</td><td align="center">% Correct</td></tr>';       
-            $topics=array();
-            $topics=getTopics();
-            foreach($topics as $t) {
-                $topicID=$t["topicID"];
-                $topicName=$t["topic"];
-                $uprogress=array();
-                $uprogress=getUserProgress($topicID, $_SESSION["uid"]);
-                if (empty($uprogress)) {
-                        echo '<tr><td><a style="color:#28547a;" href="topic?id=' . $topicID . '">'.$topicName.'</td>';
-                        echo '<td align="center">0</td>';
-                        echo '<td align="center">0</td>';
-                        echo '<td align="center">0</td>';
-                        echo '<td align="center">0%</td>';
-                }
-                else {
-                    foreach($uprogress as $item) {
-                        echo '<tr><td><a style="color:#28547a;" href="topic?id=' . $topicID . '">'.$topicName.'</td>';
-                        echo '<td align="center">'.$item["totalquestions"].'</td>';
-                        echo '<td align="center">'.$item["totalanswered"].'</td>';
-                        echo '<td align="center">'.$item["totalcorrect"].'</td>';
-                        echo '<td align="center">'.$item["percentageCorrect"].'%</td></tr>';
+        if (isset($_SESSION["loggedin"]) &&$_SESSION["loggedin"]==1 ){
+        if (isset($_SESSION["instructor"])){
+            if ($_SESSION["instructor"]==1){
+               echo '<h1 class="page-header"> Users\' Progress</h1>' ;
+            }  
+            else if ($_SESSION["instructor"]==0){
+                echo '<h4 class="page-header">'. $_SESSION["fname"] . '\'s Progress</h4>';
+                echo '<paper-material elevation="3" class="card">';
+                echo ' <div class="adjust"><div class="table-responsive" style="border: 0"><table width="100%" border="1px" BORDERCOLOR="#28547a"><tr><td align="center">Topic Name</td><td align="center">Total # of Questions</td><td align="center">Total Answered</td><td align="center">Total Correct</td><td align="center">% Correct</td></tr>';       
+                $topics=array();
+                $topics=getTopics();
+                foreach($topics as $t) {
+                    $topicID=$t["topicID"];
+                    $topicName=$t["topic"];
+                    $uprogress=array();
+                    $uprogress=getUserProgress($topicID, $_SESSION["uid"]);
+                    if (empty($uprogress)) {
+                            echo '<tr><td><a style="color:#28547a;" href="topic?id=' . $topicID . '">'.$topicName.'</td>';
+                            echo '<td align="center">0</td>';
+                            echo '<td align="center">0</td>';
+                            echo '<td align="center">0</td>';
+                            echo '<td align="center">0%</td>';
                     }
-                }
+                    else {
+                        foreach($uprogress as $item) {
+                            echo '<tr><td><a style="color:#28547a;" href="topic?id=' . $topicID . '">'.$topicName.'</td>';
+                            echo '<td align="center">'.$item["totalquestions"].'</td>';
+                            echo '<td align="center">'.$item["totalanswered"].'</td>';
+                            echo '<td align="center">'.$item["totalcorrect"].'</td>';
+                            echo '<td align="center">'.$item["percentageCorrect"].'%</td></tr>';
+                        }
+                    }
 
+                }
+                echo '</table></div></div></paper-material><br>';
             }
-            echo '</table></div></div></paper-material><br>';
         }
     }
     else{
-        echo '<li><a href="register"><i class="fa fa-fw fa-user"></i> Register</a></li>';
-        echo '<li><a href="login"><i class="fa fa-fw fa-sign-in"></i> Login</a></li>';
+        $_SESSION["intended"]="userprogress";
+        header( 'Location: login') ;
     }
 ?> 
 </paper-material>
