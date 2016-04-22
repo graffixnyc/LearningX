@@ -51,7 +51,7 @@
                 $uprogress=array();
                 $uprogress=getUserProgress($topicID, $_SESSION["uid"]);
                 if (empty($uprogress)) {
-                        echo '<tr><td>'.$topicName.'</td>';
+                        echo '<tr><td><a style="color:#28547a;" href="topic?id=' . $topicID . '">'.$topicName.'</td>';
                         echo '<td align="center">0</td>';
                         echo '<td align="center">0</td>';
                         echo '<td align="center">0</td>';
@@ -59,7 +59,7 @@
                 }
                 else {
                     foreach($uprogress as $item) {
-                        echo '<tr><td>'.$topicName.'</td>';
+                        echo '<tr><td><a style="color:#28547a;" href="topic?id=' . $topicID . '">'.$topicName.'</td>';
                         echo '<td align="center">'.$item["totalquestions"].'</td>';
                         echo '<td align="center">'.$item["totalanswered"].'</td>';
                         echo '<td align="center">'.$item["totalcorrect"].'</td>';
