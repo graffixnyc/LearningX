@@ -1,6 +1,7 @@
 <?php 
 include_once("analyticstracking.php");
 include 'internal_api.php';
+session_start();
 
 //Find the topic name of current topic
 if (isset($_POST["topicid"])) {
