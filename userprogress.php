@@ -33,7 +33,8 @@
                         <center>
 
 <?php
-   
+        echo '<link rel="stylesheet" href="css/components_style.css">';
+
         if (isset($_SESSION["loggedin"]) &&$_SESSION["loggedin"]==1 ){
         if (isset($_SESSION["instructor"])){
             if ($_SESSION["instructor"]==1){
@@ -42,7 +43,7 @@
             else if ($_SESSION["instructor"]==0){
                 echo '<h4 class="page-header">'. $_SESSION["fname"] . '\'s Progress</h4>';
                 echo '<paper-material elevation="3" class="card">';
-                echo ' <div class="adjust"><div class="table-responsive" style="border: 0"><table width="100%" border="1px" BORDERCOLOR="#28547a"><tr><td align="center">Topic Name</td><td align="center">Total Answered</td><td align="center">Total Correct</td><td align="center">% Correct</td></tr>';       
+                echo '<div class="adjust"><div class="table-responsive"><table><tr><td align="center">Topic Name</td><td align="center">Total Answered</td><td align="center">Total Correct</td><td align="center">% Correct</td></tr>';       
                 $topics=array();
                 $topics=getTopics();
                 foreach($topics as $t) {

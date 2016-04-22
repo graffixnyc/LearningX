@@ -9,7 +9,7 @@ th, td {
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
-tr:hover {
+tr:hover{
     background-color:#dae4ed;
 }
 
