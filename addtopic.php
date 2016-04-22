@@ -58,11 +58,12 @@
          <?php }?>
     <form is="iron-form" id="form" method="post">
       <paper-input class="my-class"  id="topic"  name="topic" label="Enter a New Topic Name" required></paper-input>
-      <paper-button id="my-button" class="my-button" raised onclick="submitForm();">Add Topic</paper-button>
+     
       <br>
       <button type="submit" id="SubmitButton" name="submit" style="visibility:hidden;"></button>
       <paper-toast id="toast" text="Registering..."></paper-toast>
       <paper-toast  visible="false" id="toast2" text="Login Failed, Please Try Again..."></paper-toast>
+       <paper-button id="my-button" class="my-button" style="display:block;" raised onclick="submitForm();">Add Topic</paper-button>
     </form>
     <script>function submitForm(){
        

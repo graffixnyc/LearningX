@@ -73,6 +73,50 @@ function getPractice($topicid) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	} 
 }
+function addQuestion($topicid,$question, $ac1, $ac2, $ac3, $ac4, $ac5, $ac6,$correct) {
+	$sql = "CALL addQuestion(:topicid,:question, :ac1, :ac2, :ac3, :ac4, :ac5, :ac6,:correct)";
+	try {
+		$dbCon = getConnection();
+		$stmt = $dbCon->prepare($sql);
+		$stmt->bindParam("topicid", $topicid);
+		$stmt->bindParam("question", $question);
+		$stmt->bindParam("ac1", $ac1);
+		$stmt->bindParam("ac2", $ac2);
+		$stmt->bindParam("ac3", $ac3);
+		$stmt->bindParam("ac4", $ac4);
+		$stmt->bindParam("ac5", $ac5);
+		$stmt->bindParam("ac6", $ac6);
+		$stmt->bindParam("correct", $correct);
+		$stmt->execute();
+		$results = array();
+		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+			$results[] = $row;
+		}
+		return $results;
+	}
+	catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+	} 
+}
+function addAnswer($questionid, $answer,$correct) {
+	$sql = "CALL addAnswers(:topicid,:answer,:correct)";
+	try {
+		$dbCon = getConnection();
+		$stmt = $dbCon->prepare($sql);
+		$stmt->bindParam("topicid", $topicid);
+		$stmt->bindParam("answer", $answer);
+		$stmt->bindParam("correct", $correct);
+		$stmt->execute();
+		$results = array();
+		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+			$results[] = $row;
+		}
+		return $results;
+	}
+	catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+	} 
+}
 function addTopic($topic) {
 	$sql = "CALL addTopic(:topic)";
 	try {

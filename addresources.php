@@ -138,7 +138,7 @@
 </div>
 
 
-<div id="linkDiv" style="display:none;">
+<div id="linkDiv" style="display:none;" >
     <paper-input class="my-class" type="url" id="linkurl"  name="linkurl" label="Enter a URL" ></paper-input>
     Include http:// i.e. http://www.site.com
     <paper-input class="my-class"  id="linktext"  name="linktext" label="Enter a Title for this Link" ></paper-input>
@@ -148,7 +148,7 @@
    
       
       
-      <paper-button id="my-button" class="my-button" raised onclick="submitForm();">Add Resource(s)</paper-button>
+      <paper-button id="my-button" name="my-button" class="my-button" raised onclick="submitForm();" style="display:none;">Add Resource(s)</paper-button>
       <br>
       <button type="submit" id="SubmitButton" name="submit" style="visibility:hidden;"></button>
 
@@ -180,24 +180,28 @@ function getResource() {
     document.getElementById('videoDiv').style.display="block";
     document.getElementById('textDiv').style.display="none";
     document.getElementById('linkDiv').style.display="none";
+    document.getElementById('my-button').style.display="block";
+
 
   }
   else if (jQuery("#resourceSelect option:selected").val()=='Text'){
     document.getElementById('textDiv').style.display="block";
     document.getElementById('videoDiv').style.display="none";
     document.getElementById('linkDiv').style.display="none";
-
+    document.getElementById('my-button').style.display="block";
   }
     
   else if (jQuery("#resourceSelect option:selected").val()=='Link'){
     document.getElementById('linkDiv').style.display="block";
     document.getElementById('videoDiv').style.display="none";
     document.getElementById('textDiv').style.display="none";
+    document.getElementById('my-button').style.display="block";
   }
   else{
     document.getElementById('linkDiv').style.display="none";
     document.getElementById('videoDiv').style.display="none";
     document.getElementById('textDiv').style.display="none";
+    document.getElementById('my-button').style.display="none";
   }
 
   
