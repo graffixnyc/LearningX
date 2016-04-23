@@ -450,7 +450,7 @@ body a:hover {
 .question {
   display: none;
   width: 100%;
-  height: 360px;
+  margin-bottom: 25px;
 }
 .question.active {
   display: block;
