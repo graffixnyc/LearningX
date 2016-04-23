@@ -138,6 +138,8 @@ foreach(getTopics($_POST["topicid"]) as $item) {
                     } 
                 });
 
+
+
                 // If the user is logged in, submit his answer to DB
                 if (<?php if(isset($_SESSION['uid'])) {echo "true";} else {echo "false";} ?>) {
                     $.ajax({
@@ -165,7 +167,21 @@ foreach(getTopics($_POST["topicid"]) as $item) {
                             });
                         }, 1000);                    
                     });
-                }                
+                } else {
+                    setTimeout(function(){
+                        // Move to next question
+                        var nextQuestion = currentActiveQuestion.next();
+                        currentActiveQuestion.fadeOut("slow", function () {
+                            currentActiveQuestion.removeClass("active");                                        
+                            if (nextQuestion.length) {
+                                nextQuestion.addClass("active");
+                            } else {
+                                // This is already the last question
+                                $("#congraduation").show();
+                            }
+                        });
+                    }, 1000); 
+                }              
 
             });
 
