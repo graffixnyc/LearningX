@@ -2,20 +2,17 @@
 include_once("analyticstracking.php");
 include 'internal_api.php';
 session_start();
-//If the user has not logged in, redirect him to login first
-if (!isset($_SESSION['uid'])) {
-    $_SESSION['intended'] = "topic?id=" . $_POST['topicid'];
-    header("Location: login");
-}
 
 //Find the topic name of current topic
-if (isset($_POST["topicid"])) {
-	foreach(getTopics($_POST["topicid"]) as $item) {
-	    if ($_POST["topicid"] == $item["topicID"]) {
-	        $theTopic = $item["topic"];
-	    } 
-	}
+if (!isset($_POST["topicid"]) && isset($_SESSION['topicid'])) {
+	$_POST['topicid'] = $_SESSION['topicid'];
+}     
+foreach(getTopics($_POST["topicid"]) as $item) {
+    if ($_POST["topicid"] == $item["topicID"]) {
+        $theTopic = $item["topic"];
+    } 
 }
+
 
 ?>
 
@@ -77,10 +74,16 @@ if (isset($_POST["topicid"])) {
                         <h4>Awesome! You've already answered all the quesitons~</h4>
                     </div>
                 </div>           
-            </div>            
-        </div>      
-      </div>
-      <!-- /#page-content-wrapper -->
+            </div> 
+            <?php if (!isset($_SESSION['uid'])) { ?>
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Heads up!</strong> If you login in <a href="loginBeforePractice?topicid=<?php echo $_POST["topicid"]; ?>" class="alert-link">here</a>, you can save your progress.
+            </div>
+            <?php } ?> 
+        </div> 
+     </div>
+     <!-- /#page-content-wrapper -->
 
     </div>
     <!-- /#wrapper -->
@@ -135,31 +138,34 @@ if (isset($_POST["topicid"])) {
                     } 
                 });
 
-                $.ajax({
-                    url: "markQustionAnswered",
-                    method: "POST",
-                    data: {
-                        quesitonid: currentActiveQuestion.data("id"),
-                        userid: <?php echo $_SESSION["uid"] ?>,
-                        answeredAlready: 1,
-                        answeredCorrect: correct
-                    }
-                }).always(function(data) {
-                    console.log(data);
-                    setTimeout(function(){
-                        // Move to next question
-                        var nextQuestion = currentActiveQuestion.next();
-                        currentActiveQuestion.fadeOut("slow", function () {
-                            currentActiveQuestion.removeClass("active");                                        
-                            if (nextQuestion.length) {
-                                nextQuestion.addClass("active");
-                            } else {
-                                // This is already the last question
-                                $("#congraduation").show();
-                            }
-                        });
-                    }, 3000);                    
-                });
+                // If the user is logged in, submit his answer to DB
+                if (<?php if(isset($_SESSION['uid'])) {echo "true";} else {echo "false";} ?>) {
+                    $.ajax({
+                        url: "markQustionAnswered",
+                        method: "POST",
+                        data: {
+                            quesitonid: currentActiveQuestion.data("id"),
+                            userid: <?php if(isset($_SESSION['uid'])) {echo $_SESSION["uid"];} else {echo -1;} ?>,
+                            answeredAlready: 1,
+                            answeredCorrect: correct
+                        }
+                    }).always(function(data) {
+                        console.log(data);
+                        setTimeout(function(){
+                            // Move to next question
+                            var nextQuestion = currentActiveQuestion.next();
+                            currentActiveQuestion.fadeOut("slow", function () {
+                                currentActiveQuestion.removeClass("active");                                        
+                                if (nextQuestion.length) {
+                                    nextQuestion.addClass("active");
+                                } else {
+                                    // This is already the last question
+                                    $("#congraduation").show();
+                                }
+                            });
+                        }, 1000);                    
+                    });
+                }                
 
             });
 
