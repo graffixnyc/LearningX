@@ -407,6 +407,21 @@ function updateProgress($inlevel, $user_id, $correct) {
     }
 }
 
-
+function getNonInstructorUsers() {
+    $sql = "CALL getNonInstructorUsers()";
+    try {
+		$dbCon = getConnection();
+        $stmt = $dbCon->prepare($sql);
+        $stmt->execute();
+        $results = array();
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $results[] = $row;
+        }
+        return $results;
+    }
+    catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+    }
+}
 
 ?>

@@ -17,7 +17,6 @@
     <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="bower_components/paper-material/paper-material.html">
     <link rel="import" href="bower_components/paper-styles/paper-styles.html">
-    <link rel="import" href="css/my_custom_styles.html">
     <link rel="stylesheet" href="css/style.css">
 
   </head>
@@ -32,18 +31,118 @@
                         <br>
                         <center>
 
+    <div class="modal fade" id="myModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="background:#28547a">
+                </h4>
+              </div>
+              <div class="modal-body">
+                <input type="text" class="input-sm" id="txtfname" name="txtfname" value=""/>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
 <?php
-        echo '<link rel="stylesheet" href="css/components_style.css">';
+    echo '<link rel="stylesheet" href="css/components_style.css">';
+
+
+
+
 
         if (isset($_SESSION["loggedin"]) &&$_SESSION["loggedin"]==1 ){
         if (isset($_SESSION["instructor"])){
             if ($_SESSION["instructor"]==1){
-               echo '<h1 class="page-header"> Users\' Progress</h1>' ;
+                echo '<h4 class="page-header"> Users\' Progress</h4>' ;
+                echo '<paper-material elevation="3" class="card">';
+                echo '<div class="adjust"><div class="table-responsive"><table><tr><th>Student ID</th><th>Student Name</th><th>Completed Topics</th><th>Avg. Score</th></tr>';
+                // student info
+                $studentInfo=array();
+                $studentInfo=getNonInstructorUsers();
+                // topic info
+                $topics=array();
+                $topics=getTopics();
+                $topic_count=count($topics);
+                foreach($studentInfo as $student) {
+                    // initial css
+                    $cellcolor='transparent';
+                    $textcolor='#000000';
+
+                    $studentID=$student["id"];
+                    $studentFName=$student["first_name"];
+                    $studentUName=$student["last_name"];
+                    $completed_topics=0;
+                    $total_score=0;
+                    $avg_score=0;
+        // modal, header part
+         
+        echo '<div class="modal fade" id="myModal'.$studentID.'">';
+        echo '  <div class="modal-dialog">';
+        echo '    <div class="modal-content">';
+        echo '      <div class="modal-header" style="background:#28547a;" >';
+        echo '        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+        echo '        <h4 class="modal-title" style="background:#28547a">'.$studentFName.'\'s Progress</h4>';
+        echo '      </div>';
+        // modal, body part
+        echo '      <div class="modal-body">';                    
+                    foreach($topics as $t) {
+                        $topicID=$t["topicID"];
+                        $topicName=$t["topic"];
+                        $uprogress=getUserProgress($topicID, $studentID);
+                        if (!empty($uprogress)) {
+                            $completed_topics += 1;
+                            foreach($uprogress as $p) {
+                                $score=str_replace('%', '', $p["percentageCorrect"])/100;
+                                $total_score += $score;
+                            }
+                        }
+                    }
+                    if ($completed_topics != 0) {
+                        $avg_score=$total_score/$completed_topics;
+                        if ($avg_score < 0.7) {
+                            $cellcolor='salmon';
+                        }
+                        elseif ($avg_score >=0.7 and $avg_score < 0.9) {
+                            $cellcolor='#ffe37a';
+                        }
+                        else {
+                            $cellcolor='#7affa0';
+                        }
+                        $textcolor='white';
+                    }
+                    else {
+                        $avg_score=0;
+                    }
+        // modal, foot
+        echo '      <div class="modal-footer">';
+        echo '        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
+        echo '      </div>';
+        echo '    </div><!-- /.modal-content -->';
+        echo '  </div><!-- /.modal-dialog -->';
+        echo '</div><!-- /.modal -->';
+
+
+                    $display_score=$avg_score*100;
+                    $display_score="$display_score%";
+                    echo '<tr class="example" data-toggle="modal" data-id="'.$studentID.'"><td>'.$studentID.'</td>';
+                    echo '<td>'.$studentFName.' '.$studentUName.'</td>';
+                    echo '<td>'.$completed_topics.'/'.$topic_count.'</td>';
+                    echo '<td style="color:'.$textcolor.'; background:'.$cellcolor.'">'.$display_score.'</td></tr>';
+                }
+
+                echo '</table></div></paper-material><br>';
             }  
             else if ($_SESSION["instructor"]==0){
                 echo '<h4 class="page-header">'. $_SESSION["fname"] . '\'s Progress</h4>';
                 echo '<paper-material elevation="3" class="card">';
-                echo '<div class="adjust"><div class="table-responsive"><table><tr><td align="center">Topic Name</td><td align="center">Total Answered</td><td align="center">Total Correct</td><td align="center">% Correct</td></tr>';       
+                echo '<div class="adjust"><div class="table-responsive"><table><tr><th align="center">Topic Name</th><th align="center">Total Answered</th><th align="center">Total Correct</th><th align="center">% Correct</th></tr>';       
                 $topics=array();
                 $topics=getTopics();
                 foreach($topics as $t) {
@@ -86,8 +185,28 @@
         $_SESSION["intended"]="userprogress";
         header( 'Location: login') ;
     }
+
+    echo'
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>    <script>
+$(function(){
+    $(".example").click(function(){
+        var sid = $(this).data("id");
+        $.ajax({
+            type: "POST",
+            url: "modal.php", 
+            data: {data: "test"},,
+            success:function(result)//we got the response
+            {
+                alert("Successfully called "+result);
+            },
+                error:function(exception){alert("Exeption:"+exception);}
+            });
+
+        alert(sid);
+    });
+});
+</script>'
 ?> 
-</paper-material>
                         </center>
                     </div>
                 </div>
