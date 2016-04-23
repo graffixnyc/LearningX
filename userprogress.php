@@ -22,6 +22,7 @@
   </head>
 
   <body>
+        <div id="success"></div>
         <?php include 'menu.php';?>
         
             <div class="container">
@@ -30,25 +31,6 @@
                         <?php include 'header.html';?>
                         <br>
                         <center>
-
-    <div class="modal fade" id="myModal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" style="background:#28547a">
-                </h4>
-              </div>
-              <div class="modal-body">
-                <input type="text" class="input-sm" id="txtfname" name="txtfname" value=""/>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div>
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
 
 <?php
     echo '<link rel="stylesheet" href="css/components_style.css">';
@@ -81,17 +63,7 @@
                     $completed_topics=0;
                     $total_score=0;
                     $avg_score=0;
-        // modal, header part
-         
-        echo '<div class="modal fade" id="myModal'.$studentID.'">';
-        echo '  <div class="modal-dialog">';
-        echo '    <div class="modal-content">';
-        echo '      <div class="modal-header" style="background:#28547a;" >';
-        echo '        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
-        echo '        <h4 class="modal-title" style="background:#28547a">'.$studentFName.'\'s Progress</h4>';
-        echo '      </div>';
-        // modal, body part
-        echo '      <div class="modal-body">';                    
+                  
                     foreach($topics as $t) {
                         $topicID=$t["topicID"];
                         $topicName=$t["topic"];
@@ -120,18 +92,10 @@
                     else {
                         $avg_score=0;
                     }
-        // modal, foot
-        echo '      <div class="modal-footer">';
-        echo '        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
-        echo '      </div>';
-        echo '    </div><!-- /.modal-content -->';
-        echo '  </div><!-- /.modal-dialog -->';
-        echo '</div><!-- /.modal -->';
-
 
                     $display_score=$avg_score*100;
                     $display_score="$display_score%";
-                    echo '<tr class="example" data-toggle="modal" data-id="'.$studentID.'"><td>'.$studentID.'</td>';
+                    echo '<tr class="example" data-id="'.$studentID.'" data-fname="'.$studentFName.'"><td>'.$studentID.'</td>';
                     echo '<td>'.$studentFName.' '.$studentUName.'</td>';
                     echo '<td>'.$completed_topics.'/'.$topic_count.'</td>';
                     echo '<td style="color:'.$textcolor.'; background:'.$cellcolor.'">'.$display_score.'</td></tr>';
@@ -191,18 +155,18 @@
 $(function(){
     $(".example").click(function(){
         var sid = $(this).data("id");
-        $.ajax({
+        var fname = $(this).data("fname");
+        jQuery.ajax({
             type: "POST",
             url: "modal.php", 
-            data: {data: "test"},,
+            data: {data: sid, fname: fname},
             success:function(result)//we got the response
             {
-                alert("Successfully called "+result);
+                $("body").append(result);
+                $("#myModal"+sid).modal("show");
             },
                 error:function(exception){alert("Exeption:"+exception);}
             });
-
-        alert(sid);
     });
 });
 </script>'
