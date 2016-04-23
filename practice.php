@@ -58,7 +58,7 @@ foreach(getTopics($_POST["topicid"]) as $item) {
                 			echo "<div class='text-left center-block' style='width:50%'>";
                 			$answers = getAnswers($item['questionID']);
                 			foreach ($answers as $ans) {
-                				echo "<div class='checkbox'><label><input type='checkbox' value=" . $ans['correct'] . ">  " . $ans['answer'] . "</label></div>";
+                				echo "<div class='checkbox'><label><input type='radio' name='AnswerChoices' value=" . $ans['correct'] . ">  " . $ans['answer'] . "</label></div>";
                 			}
                 			
                 			echo "</div>";
@@ -120,7 +120,7 @@ foreach(getTopics($_POST["topicid"]) as $item) {
                 // If correct, let the option be green
                 // If wrong, let the option be red
                 var correct = 1;
-                currentActiveQuestion.find("input:checkbox").each(function(index) {
+                currentActiveQuestion.find("input:radio").each(function(index) {
                     console.log(index);
                     // show all the right options
                     if (this.checked && this.value == 1) {
