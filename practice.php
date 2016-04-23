@@ -4,13 +4,15 @@ include 'internal_api.php';
 session_start();
 
 //Find the topic name of current topic
-if (isset($_POST["topicid"])) {
-	foreach(getTopics($_POST["topicid"]) as $item) {
-	    if ($_POST["topicid"] == $item["topicID"]) {
-	        $theTopic = $item["topic"];
-	    } 
-	}
+if (!isset($_POST["topicid"]) && isset($_SESSION['topicid'])) {
+	$_POST['topicid'] = $_SESSION['topicid'];
+}     
+foreach(getTopics($_POST["topicid"]) as $item) {
+    if ($_POST["topicid"] == $item["topicID"]) {
+        $theTopic = $item["topic"];
+    } 
 }
+
 
 ?>
 
@@ -39,44 +41,28 @@ if (isset($_POST["topicid"])) {
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                 <?php include 'header.html';?>
-                	<h2 class="page-header"><?php if(isset($theTopic)) echo $theTopic ?></h2>
-                	<?php
-	                	//Declare the Array
-						$practice=array(); 
-						//Set the Array to call the function (this function is in internal_api.php)
-						$practice=getPractice($_POST["topicid"]);
-
-						//Loop through the results and display them
-						// echo "<pre>";
-						// print_r($practice);
-						// echo "</pre>";
-						// foreach($practice as $item) {
-						//     echo $item['question'] . '<br>';
-						// }
-
-						// $answer = getAnswers(1);
-
-						// //Loop through the results and display them
-						// echo "<pre>";
-						// print_r($answer);
-						// echo "</pre>";
-                	?>
-                	
+                	<h2 class="page-header"><?php if(isset($theTopic)) echo $theTopic ?></h2>                	
                     <div id="questions-container">
                 	<?php
+                        //Declare the Array
+                        $practice=array(); 
+                        //Set the Array to call the function (this function is in internal_api.php)
+                        $practice=getPractice($_POST["topicid"]);
+
                         $index = 0;                        
                 		foreach ($practice as $item) {
-                			echo "<div class='question'>";
-                            echo '<p>Qustion ' . ++$index . ' of ' . count($practice) . '</p>';
+                            $index++;
+                			echo "<div class='question' data-id=" . $index . ">";
+                            echo '<p>Qustion ' . $index . ' of ' . count($practice) . '</p>';
                 			echo "<p>" . $item['question'] . "</p>";
                 			echo "<div class='text-left center-block' style='width:50%'>";
                 			$answers = getAnswers($item['questionID']);
                 			foreach ($answers as $ans) {
-                				echo "<div class='radio'><label><input type='radio'>" . $ans['answer'] . "</label></div>";
+                				echo "<div class='checkbox'><label><input type='checkbox' value=" . $ans['correct'] . ">  " . $ans['answer'] . "</label></div>";
                 			}
                 			
                 			echo "</div>";
-                			echo '<input class="btn btn-primary submit" type="submit" value="Select Answer">';
+                			echo '<input class="btn btn-primary submit" type="button" value="Select Answer">';
                 			echo "&nbsp;&nbsp;&nbsp;";
                 			echo '<input class="btn btn-default skip" type="button" value="Skip Qustion">';
                 			echo "</div>";
@@ -88,10 +74,16 @@ if (isset($_POST["topicid"])) {
                         <h4>Awesome! You've already answered all the quesitons~</h4>
                     </div>
                 </div>           
-            </div>            
-        </div>      
-      </div>
-      <!-- /#page-content-wrapper -->
+            </div> 
+            <?php if (!isset($_SESSION['uid'])) { ?>
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Heads up!</strong> If you login in <a href="loginBeforePractice?topicid=<?php echo $_POST["topicid"]; ?>" class="alert-link">here</a>, you can save your progress.
+            </div>
+            <?php } ?> 
+        </div> 
+     </div>
+     <!-- /#page-content-wrapper -->
 
     </div>
     <!-- /#wrapper -->
@@ -117,6 +109,79 @@ if (isset($_POST["topicid"])) {
                     }
                 });
                 
+
+            });
+
+            // When click "submit" button, use AJAX to submit
+            $(".question").find(".submit").click(function() {
+                console.log("submit");
+                var currentActiveQuestion = $(".question.active");
+                // Check if every option is selected or not correlty
+                // If correct, let the option be green
+                // If wrong, let the option be red
+                var correct = 1;
+                currentActiveQuestion.find("input:checkbox").each(function(index) {
+                    console.log(index);
+                    // show all the right options
+                    if (this.checked && this.value == 1) {
+                        $(this).parent().addClass("text-success");
+                    }
+                    // if the option is selected but wrong, make it red
+                    if (this.checked && this.value == 0) {
+                        $(this).parent().addClass("text-danger");
+                        correct = 0;
+                    }
+                    // if the option is right but not selcted, make it yellow
+                    if (!this.checked && this.value == 1) {                  
+                        $(this).parent().addClass("text-info");      
+                        correct = 0;
+                    } 
+                });
+
+
+
+                // If the user is logged in, submit his answer to DB
+                if (<?php if(isset($_SESSION['uid'])) {echo "true";} else {echo "false";} ?>) {
+                    $.ajax({
+                        url: "markQustionAnswered",
+                        method: "POST",
+                        data: {
+                            quesitonid: currentActiveQuestion.data("id"),
+                            userid: <?php if(isset($_SESSION['uid'])) {echo $_SESSION["uid"];} else {echo -1;} ?>,
+                            answeredAlready: 1,
+                            answeredCorrect: correct
+                        }
+                    }).always(function(data) {
+                        console.log(data);
+                        setTimeout(function(){
+                            // Move to next question
+                            var nextQuestion = currentActiveQuestion.next();
+                            currentActiveQuestion.fadeOut("slow", function () {
+                                currentActiveQuestion.removeClass("active");                                        
+                                if (nextQuestion.length) {
+                                    nextQuestion.addClass("active");
+                                } else {
+                                    // This is already the last question
+                                    $("#congraduation").show();
+                                }
+                            });
+                        }, 1000);                    
+                    });
+                } else {
+                    setTimeout(function(){
+                        // Move to next question
+                        var nextQuestion = currentActiveQuestion.next();
+                        currentActiveQuestion.fadeOut("slow", function () {
+                            currentActiveQuestion.removeClass("active");                                        
+                            if (nextQuestion.length) {
+                                nextQuestion.addClass("active");
+                            } else {
+                                // This is already the last question
+                                $("#congraduation").show();
+                            }
+                        });
+                    }, 1000); 
+                }              
 
             });
 
