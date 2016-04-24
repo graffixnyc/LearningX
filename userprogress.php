@@ -69,10 +69,12 @@
                         $topicName=$t["topic"];
                         $uprogress=getUserProgress($topicID, $studentID);
                         if (!empty($uprogress)) {
-                            $completed_topics += 1;
                             foreach($uprogress as $p) {
                                 $score=str_replace('%', '', $p["percentageCorrect"])/100;
                                 $total_score += $score;
+                                if ($p["totalquestions"]==$p["totalanswered"]) {
+                                    $completed_topics += 1;
+                                }
                             }
                         }
                     }
