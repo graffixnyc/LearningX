@@ -42,7 +42,7 @@ foreach(getTopics($_POST["topicid"]) as $item) {
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                 <?php include 'header.html';?>
-                	<h2 class="page-header"><?php if(isset($theTopic)) echo $theTopic ?></h2>                	
+                	<h2 class="page-header">Test your knowledge</h2>                	
                     <div id="questions-container">
                 	<?php
                         //Declare the Array
