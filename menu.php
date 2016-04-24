@@ -16,6 +16,9 @@
                                                 <li><a href="addtopic">Add Topic</a></li>
                                                 <li><a href="addresources">Add Topic Resources</a></li>
                                                 <li><a href="addquestion">Add Topic Questions</a></li>
+                                                <li><a href="comingsoon">Edit Topic</a></li>
+                                                <li><a href="comingsoon">Edit Topic Resources</a></li>
+                                                <li><a href="comingsoon">Edit Topic Questions</a></li>
                                                 <li><a href="#">Account Settings</a></li>
                                                 <li><a href="logout">Logout</a></li>
                                             </ul>
