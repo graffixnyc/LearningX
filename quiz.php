@@ -4,7 +4,7 @@ include 'internal_api.php';
 session_start();
 
 //Find the topic name of current topic
-$_SESSION['topicid'] = 1;
+$_SESSION['topicid'] = 7;
 if (!isset($_POST["topicid"]) && isset($_SESSION['topicid'])) {
 	$_POST['topicid'] = $_SESSION['topicid'];
 }     
