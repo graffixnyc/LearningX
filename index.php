@@ -28,9 +28,9 @@
   </head>
 
   <body>
-<!--
+
   <div class="description" id="description">Click Here to Start!</div>
--->
+
         <?php include 'menu.php';?>
             <div class="cover" id="cover"></div> 
             <div class="container" id="container">

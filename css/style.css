@@ -39,21 +39,31 @@ html {
     box-shadow: inset 0 0 5px 2px rgba(0,0,0,.75);
 }
 .description {
-    padding-left: 100;
+    color: #28547a;
+    position: absolute;
+    padding-left: 75;
     padding-top: 25;
-    animation-duration: .3s;
-    animation-name: fadeAndScale;
-    animation-timing-function: cubic-bezier(.71,.55,.62,1.57);
+    animation: fade 3s;
+    animation-iteration-count: 5;
+    z-index: 100;
 }
-@keyframes fadeAndScale {
-    from {
+@keyframes fade {
+    0% {
+        color: #28745a;
         opacity: 0;
-        transform: scale(.9, .9);
+        font-size: 100%
     }
-    to {
+    50% {
+        color: white;
         opacity: 1;
-        transform: scale(1, 1);
+        font-size: 100%
     }
+    100% {
+        color: #28547a;
+        opacity: 0;
+        font-size: 100%
+    }
+
 }
 
 .nav .open > a {
