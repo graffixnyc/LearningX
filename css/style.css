@@ -13,6 +13,49 @@ html {
   height: 100%;
   background-color: #28547a;
 }
+/*-------------------------------*/
+/*           COVER               */
+/*-------------------------------*/
+.cover {
+    display: none;
+    position: absolute;
+    width: 0; height: 0;
+    left: 0; top: 0; right: 0; bottom: 0;
+    border: 0 solid #000;
+    opacity: .1;
+    filter: alpha(opacity=75);
+    z-index: 9;
+    transition: all .25s;
+    box-shadow: 0 0 0 100px #000;
+    overflow: hidden;
+}
+.cover::before {
+    content: '';
+    width: 100%; height:100%;
+    border-radius: 50%;
+    border: 400px solid #000;
+    position: absolute;
+    left: -400px; top: -400px;
+    box-shadow: inset 0 0 5px 2px rgba(0,0,0,.75);
+}
+.description {
+    padding-left: 100;
+    padding-top: 25;
+    animation-duration: .3s;
+    animation-name: fadeAndScale;
+    animation-timing-function: cubic-bezier(.71,.55,.62,1.57);
+}
+@keyframes fadeAndScale {
+    from {
+        opacity: 0;
+        transform: scale(.9, .9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1, 1);
+    }
+}
+
 .nav .open > a {
   background-color: transparent;
 }
@@ -106,7 +149,6 @@ padding: 10px 5px;
   display: none;
 }
 #page-content-wrapper {
-  padding-top: 70px;
   width: 100%;
 }
 

@@ -28,16 +28,19 @@
   </head>
 
   <body>
+<!--
+  <div class="description" id="description">Click Here to Start!</div>
+-->
         <?php include 'menu.php';?>
-      
-            <div class="container">
+            <div class="cover" id="cover"></div> 
+            <div class="container" id="container">
 
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                      <?php include 'header.html';?>
                      <br>
                         <center>
-                            <div class="video-container">
+                            <div class="video-container" id="video">
                                 <iframe src="https://www.youtube.com/embed/ceiZOFHh1hU" frameborder="0" width="560" height="315"></iframe>
                             </div> 
                         </center>
@@ -48,6 +51,7 @@
 <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
 
         <script src="js/index.js"></script>
+<!--<script src="cover.js"></script>-->
 
     
     
