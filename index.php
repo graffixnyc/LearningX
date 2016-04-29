@@ -29,7 +29,7 @@
 
   <body>
 
-  <div class="description" id="description">Click Here to Start!</div>
+  <div >&nbsp&nbsp&nbsp&nbsp&nbsp<img src="imgs/clickhere2.png"></div>
 
         <?php include 'menu.php';?>
             <div class="cover" id="cover"></div> 
