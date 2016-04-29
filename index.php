@@ -28,8 +28,12 @@
   </head>
 
   <body>
-
+<!--
   <div class="description" id="description">Click Here to Start!</div>
+
+    <img style="padding-left:70; padding-top:20;" src="imgs/clickhere.png">
+--!>
+    <img style="width:220px; height:100px; padding-left:50px; " src="imgs/clickhere2.png">
 
         <?php include 'menu.php';?>
             <div class="cover" id="cover"></div> 
