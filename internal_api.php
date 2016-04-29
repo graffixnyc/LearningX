@@ -73,6 +73,25 @@ function getPractice($topicid) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	} 
 }
+function getPracticeWithJsonResponse($topicid) {
+	$sql = "CALL getPractice(:topicid)";
+	try {
+		$dbCon = getConnection();
+		$stmt = $dbCon->prepare($sql);
+		$stmt->bindParam("topicid", $topicid);
+		$stmt->execute();
+		$results = array();
+		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+			$answers  = getAnswers($row['questionID']);
+			$row['answers'] = $answers;
+			$results[] = $row;
+		}
+		return json_encode($results);
+	}
+	catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+	} 
+}
 function addQuestion($topicid,$question, $ac1, $ac2, $ac3, $ac4, $ac5, $ac6,$correct) {
 	$sql = "CALL addQuestion(:topicid,:question, :ac1, :ac2, :ac3, :ac4, :ac5, :ac6,:correct)";
 	try {

@@ -53,7 +53,7 @@ foreach(getTopics($_POST["topicid"]) as $item) {
                 		foreach ($practice as $item) {
                             $index++;
                 			echo "<div class='question' data-id=" . $index . ">";
-                            echo '<p>Qustion ' . $index . ' of ' . count($practice) . '</p>';
+                            echo '<p>Question ' . $index . ' of ' . count($practice) . '</p>';
                 			echo "<p>" . $item['question'] . "</p>";
                 			echo "<div class='text-left center-block' style='width:50%'>";
                 			$answers = getAnswers($item['questionID']);
@@ -64,7 +64,7 @@ foreach(getTopics($_POST["topicid"]) as $item) {
                 			echo "</div>";
                 			echo '<input class="btn btn-primary submit" type="button" value="Select Answer">';
                 			echo "&nbsp;&nbsp;&nbsp;";
-                			echo '<input class="btn btn-default skip" type="button" value="Skip Qustion">';
+                			echo '<input class="btn btn-default skip" type="button" value="Skip Question">';
                 			echo "</div>";
                 		}
                 	?>
@@ -143,7 +143,7 @@ foreach(getTopics($_POST["topicid"]) as $item) {
                 // If the user is logged in, submit his answer to DB
                 if (<?php if(isset($_SESSION['uid'])) {echo "true";} else {echo "false";} ?>) {
                     $.ajax({
-                        url: "markQustionAnswered",
+                        url: "markQuestionAnswered",
                         method: "POST",
                         data: {
                             quesitonid: currentActiveQuestion.data("id"),
