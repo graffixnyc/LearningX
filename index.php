@@ -29,7 +29,7 @@
 
   <body>
 
-  <div >&nbsp&nbsp&nbsp&nbsp&nbsp<img src="imgs/clickhere2.png"></div>
+  <div class="description" id="description"><img class="description" src="imgs/clickhere2.png"></div>
 
         <?php include 'menu.php';?>
             <div class="cover" id="cover"></div> 
