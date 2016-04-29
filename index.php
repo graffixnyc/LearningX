@@ -44,6 +44,10 @@
                                 <iframe src="https://www.youtube.com/embed/ceiZOFHh1hU" frameborder="0" width="560" height="315"></iframe>
                             </div> 
                         </center>
+                        <br>
+                        <p style="text-indent: 2em; text-align: justify">Learning X is an adaptive platform designed to help users learn and to simplify the complexity of that process. </p>
+                        <p style="text-indent: 2em; text-align: justify">For instructors: Learning X allows you to create content based on your course material. You can also view student's process to glean insights into your own teaching practices. </p>
+                        <p style="text-indent: 2em; text-align: justify">For students: You can work through the materials as needed or you can test your knowledge by using our adaptive quiz system. To get started click here (we can link to the introduction)</p>
                     </div>
                 </div>
             </div>
