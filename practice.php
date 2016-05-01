@@ -71,7 +71,7 @@ foreach(getTopics($_POST["topicid"]) as $item) {
                     </div>
 
                     <div id="congraduation" style="display: none">
-                        <h4>Awesome! You've already answered all the quesitons~</h4>
+                        <h4>Awesome! You've already answered all the questions~</h4>
                     </div>
                 </div>           
             </div> 
@@ -124,16 +124,19 @@ foreach(getTopics($_POST["topicid"]) as $item) {
                     console.log(index);
                     // show all the right options
                     if (this.checked && this.value == 1) {
-                        $(this).parent().addClass("text-success");
+                        // $(this).parent().addClass("text-success");
+                        $(this).parent().append("<div class='alert alert-success'><span class='glyphicon glyphicon-ok-circle' aria-hidden='true'></span> Congrats! You got it right</div>");
                     }
                     // if the option is selected but wrong, make it red
                     if (this.checked && this.value == 0) {
-                        $(this).parent().addClass("text-danger");
+                        // $(this).parent().addClass("text-danger");
+                        $(this).parent().append("<div class='alert alert-danger'><span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span> Sorry that was incorrect</div>");
                         correct = 0;
                     }
-                    // if the option is right but not selcted, make it yellow
+                    // if the option is right but not selcted, make it blue
                     if (!this.checked && this.value == 1) {                  
-                        $(this).parent().addClass("text-info");      
+                        // $(this).parent().addClass("text-info");
+                        $(this).parent().append("<div class='alert alert-info'><span class='glyphicon glyphicon-hand-up' aria-hidden='true'></span> I'm a right answer :)</div>");    
                         correct = 0;
                     } 
                 });
@@ -165,7 +168,7 @@ foreach(getTopics($_POST["topicid"]) as $item) {
                                     $("#congraduation").show();
                                 }
                             });
-                        }, 1000);                    
+                        }, 2000);                    
                     });
                 } else {
                     setTimeout(function(){
@@ -180,7 +183,7 @@ foreach(getTopics($_POST["topicid"]) as $item) {
                                 $("#congraduation").show();
                             }
                         });
-                    }, 1000); 
+                    }, 2000); 
                 }              
 
             });

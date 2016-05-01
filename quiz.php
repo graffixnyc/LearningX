@@ -34,7 +34,7 @@ session_start();
                     </div>
 
                     <div id="congraduation" style="display: none">
-                        <h4>Awesome! You've already answered all the quesitons~</h4>
+                        <h4>Awesome! You've already answered all the questions~</h4>
                     </div>
                     <div id="sorry" style="display: none">
                         <h4>Sorry! You seem to need more learning on current topic</h4>
@@ -138,16 +138,19 @@ session_start();
                                     console.log(index);
                                     // show all the right options
                                     if (this.checked && this.value == 1) {
-                                        $(this).parent().addClass("text-success");
+                                        // $(this).parent().addClass("text-success");
+                                        $(this).parent().append("<div class='alert alert-success'><span class='glyphicon glyphicon-ok-circle' aria-hidden='true'></span> Congrats! You got it right</div>");
                                     }
                                     // if the option is selected but wrong, make it red
                                     if (this.checked && this.value == 0) {
-                                        $(this).parent().addClass("text-danger");
+                                        // $(this).parent().addClass("text-danger");
+                                        $(this).parent().append("<div class='alert alert-danger'><span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span> Sorry that was incorrect</div>");
                                         correct = 0;
                                     }
                                     // if the option is right but not selcted, make it yellow
                                     if (!this.checked && this.value == 1) {                  
-                                        $(this).parent().addClass("text-info");      
+                                        // $(this).parent().addClass("text-info");   
+                                        $(this).parent().append("<div class='alert alert-info'><span class='glyphicon glyphicon-hand-up' aria-hidden='true'></span> I'm a right answer :)</div>");    
                                         correct = 0;
                                     } 
                                 });
@@ -167,7 +170,7 @@ session_start();
                                             whenFinishTopic ( topicid, numberOfCorrect, numberOfQuestions);
                                         }
                                     });
-                                }, 1000);
+                                }, 2000);
                             });
 
                         },
