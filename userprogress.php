@@ -117,9 +117,13 @@
                     $uprogress=array();
                     $cellcolor="#ffffff";
                     $uprogress=getUserProgress($topicID, $_SESSION["uid"]);
+                    $temp_count=array();
+                    $temp_count=getQuestionCount($topicID);
                     if (empty($uprogress)) {
-                            echo '<tr><td><a style="color:#28547a;" href="topic?id=' . $topicID . '">'.$topicName.'</td>';
-                            echo '<td align="center">0</td>';
+                        echo '<tr><td><a style="color:#28547a;" href="topic?id=' . $topicID . '">'.$topicName.'</td>';
+                        foreach($temp_count as $question_count){
+                            echo '<td align="center">0/'.$question_count["count"].'</td>';
+                        }
                             echo '<td align="center">0</td>';
                             echo '<td align="center">0%</td>';
                     }

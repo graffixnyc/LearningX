@@ -23,8 +23,12 @@ echo '
                     $cellcolor="#ffffff";
                     $uprogress=getUserProgress($topicID, $_POST["data"]);
                     if (empty($uprogress)) {
-                            echo '<tr><td><a style="color:#28547a;" href="topic?id=' . $topicID . '">'.$topicName.'</td>';
-                            echo '<td align="center">0</td>';
+                        echo '<tr><td><a style="color:#28547a;" href="topic?id=' . $topicID . '">'.$topicName.'</td>';
+                        $temp_count=array();
+                        $temp_count=getQuestionCount($topicID);
+                            foreach($temp_count as $question_count){
+                                echo '<td align="center">0/'.$question_count["count"].'</td>';
+                            }
                             echo '<td align="center">0</td>';
                             echo '<td align="center">0%</td>';
                     }

@@ -385,6 +385,24 @@ function markQuestionAnswered($question_id, $user_id, $answered_already, $answer
 
 }
 
+function getQuestionCount($topic_level) {
+    $sql = "CALL getQuestionCount(:topic_level)";
+    try {
+		$dbCon = getConnection();
+        $stmt = $dbCon->prepare($sql);
+        $stmt->bindParam("topic_level", $topic_level);
+        $stmt->execute();
+        $results = array();
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $results[] = $row;
+        }
+        return $results;
+    }
+    catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+    }
+}
+
 function getUserProgress($topic_level, $user_id) {
     $sql = "CALL getUserProgress(:topic_level, :user_id)";
     try {
