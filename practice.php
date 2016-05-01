@@ -52,7 +52,7 @@ foreach(getTopics($_POST["topicid"]) as $item) {
                         $index = 0;                        
                 		foreach ($practice as $item) {
                             $index++;
-                			echo "<div class='question' data-id=" . $index . ">";
+                			echo "<div class='question' data-id=" . $item['questionID'] . ">";
                             echo '<p>Question ' . $index . ' of ' . count($practice) . '</p>';
                 			echo "<p>" . $item['question'] . "</p>";
                 			echo "<div class='text-left center-block' style='width:50%'>";
@@ -149,6 +149,7 @@ foreach(getTopics($_POST["topicid"]) as $item) {
                         url: "markQuestionAnswered",
                         method: "POST",
                         data: {
+                            topicid: <?php echo $_POST['topicid'] ?>,
                             quesitonid: currentActiveQuestion.data("id"),
                             userid: <?php if(isset($_SESSION['uid'])) {echo $_SESSION["uid"];} else {echo -1;} ?>,
                             answeredAlready: 1,

@@ -425,7 +425,7 @@ function getUserProgress($topic_level, $user_id) {
 }
 
 function updateProgress($inlevel, $user_id, $correct) {
-    $sql = "CALL getUserProgress(:inlevel, :user_id, :correct)";
+    $sql = "CALL updateProgress(:inlevel, :user_id, :correct)";
     try {
 		$dbCon = getConnection();
         $stmt = $dbCon->prepare($sql);

@@ -82,7 +82,7 @@ session_start();
                             // $("#questions-container").html(JSON.stringify(questions));
                             $("#questions-container").html("");
                             for (var i = 0; i < questions.length; i++) {
-                                $("#questions-container").append("<div class='question' data-id=" + (i+1) + "></div>");
+                                $("#questions-container").append("<div class='question' data-id=" + questions[i].questionID + "></div>");
                                 var currentQuestionDiv = $("#questions-container div").last();
                                 console.log(currentQuestionDiv);
                                 currentQuestionDiv.append("<p>Qustion " + (i+1) + " of " + questions.length + " (currentTopic: " + topicid + ")</p>");
