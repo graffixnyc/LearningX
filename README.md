@@ -2,7 +2,9 @@
 
 Stevens Insititute of Technology 
 
-CS 545 Human Computer Interaction
+CS 545 Human Computer Interaction Group Project:
+
+Final Presentation Slideshow:  https://github.com/graffixnyc/LearningX/blob/master/Project_Docs/Learning%20X%20Final%20Presentation.pptx
 
 Patrick Hill, Jianhong Mou, Tianyu Luo, Neil Hinrichs, Sarah Inman
 
