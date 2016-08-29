@@ -1,6 +1,6 @@
 # LearningX
 
-Stevens Insititute of Technology 
+Stevens Institute of Technology 
 
 CS 545 Human Computer Interaction Group Project:
 
